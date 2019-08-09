@@ -35,8 +35,8 @@
 
 # 3:SOURCEFILE, DESTDIR
 3:KSP_ColorPicker.version,GameData/KSP_ColorPicker
-3:LICENSE.md,GameData/KSP_ColorPicker
-3:README.md,GameData/KSP_ColorPicker
+3:License.md,GameData/KSP_ColorPicker
+3:ReadMe.md,GameData/KSP_ColorPicker
 
 
 #
