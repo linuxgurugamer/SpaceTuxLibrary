@@ -1,0 +1,21 @@
+{
+  "NAME": "KSP_Log",
+  "URL": "https://ksp.spacetux.net/avc/KSP_Log",
+  "DOWNLOAD": "https://github.com/linuxgurugamer/SpaceTuxLibrary/releases",
+  "GITHUB": {
+    "USERNAME": "linuxgurugamer",
+    "REPOSITORY": "SpaceTuxLibrary",
+    "ALLOW_PRE_RELEASE": false
+  },
+  "VERSION": {
+    "MAJOR": 0,
+    "MINOR": 0,
+    "PATCH": 1,
+    "BUILD": 0
+  },
+  "KSP_VERSION_MIN": {
+    "MAJOR": 1,
+    "MINOR": 7,
+    "PATCH": 1
+  }
+}

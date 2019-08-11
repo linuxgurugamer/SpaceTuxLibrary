@@ -11,11 +11,9 @@ set H=R:\KSP_1.7.2_dev
 set H=R:\KSP_1.7.3-GC-OSE
 set GAMEDIR=SpaceTuxLibrary
 set GAMEDATA="GameData"
-set VERSIONFILE=%GAMEDIR%.version
-set VERSIONFILE2=%3.version
+set VERSIONFILE=%3.version
 
 copy /Y "%1%2" "%GAMEDATA%\%GAMEDIR%\Plugins"
 copy /Y %VERSIONFILE% %GAMEDATA%\%GAMEDIR%
-copy /Y %VERSIONFILE2% %GAMEDATA%\%GAMEDIR%
-
-xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
+echo %1
+echo %2

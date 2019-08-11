@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using ToolbarControl_NS;
 using ClickThroughFix;
-
+using KSP_Log;
 
 namespace KSPColorPicker
 {
@@ -23,6 +23,9 @@ namespace KSPColorPicker
 
 
         // Private and internal fields
+
+        private static Log Log = new Log("ColorPicker");
+
         internal bool destroyOnClose = false;
         internal bool useDefinedPosition = false;
         internal int positionLeft = 0;
@@ -53,7 +56,7 @@ namespace KSPColorPicker
         private string texturePath = "GameData/KSP_ColorPicker/PluginData/colorpicker_texture";
 
         double lastTimePinged = 0;
-        public void _PingTime()
+        public void PingTime()
         {
             lastTimePinged = Time.realtimeSinceStartup;
         }
@@ -143,6 +146,7 @@ namespace KSPColorPicker
 
         void OnGUI()
         {
+            GUI.skin = HighLogic.Skin;
             if (activePingsNeeded && Time.realtimeSinceStartup - lastTimePinged > 0.2f)
                 CloseAndDestroy();
             
@@ -173,7 +177,7 @@ namespace KSPColorPicker
 
             GUI.Box(new Rect(textureWidth + 30, 6, 20, textureHeight), saturationTexture, saturationTextureStyle);
 
-            if (GUI.Button(new Rect(textureWidth - 120, textureHeight + 10, 60, 25), "Cancel"))
+            if (GUI.Button(new Rect(textureWidth / 3, textureHeight + 20, 60, 25), " Cancel "))
             {
                 // hide picker
                 showPicker = false;
@@ -183,7 +187,7 @@ namespace KSPColorPicker
                     Destroy(this);
                 }
             }
-            if (GUI.Button(new Rect(textureWidth - 60, textureHeight + 10, 60, 25), "Accept"))
+            if (GUI.Button(new Rect(textureWidth / 3 * 2, textureHeight + 20, 60, 25), " Accept "))
             {
                 selectedColor = styleTexture.GetPixel(0, 0);
                 success = true;

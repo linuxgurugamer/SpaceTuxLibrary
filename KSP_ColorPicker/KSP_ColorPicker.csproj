@@ -58,7 +58,6 @@
     </Compile>
     <Compile Include="ColorPicker.cs" />
     <Compile Include="InstallChecker.cs" />
-    <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KSP_Log\KSP_Log.csproj">
+      <Project>{d4353784-80e0-4ec2-a13e-abbd09ea1a78}</Project>
+      <Name>KSP_Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -87,7 +92,7 @@ set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Com
 
 
 
-start /D D:\Users\jbb\github\KSP_ColorPicker /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
+start /D D:\Users\jbb\github\SpaceTuxLibrary /WAIT deploy.bat  $(TargetDir) $(TargetFileName) $(TargetName)
 
 
 
@@ -100,7 +105,7 @@ if $(ConfigurationName) == Release (
 
 
 
-	start /D D:\Users\jbb\github\KSP_ColorPicker /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
+	start /D D:\Users\jbb\github\SpaceTuxLibrary /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
 
 
 
