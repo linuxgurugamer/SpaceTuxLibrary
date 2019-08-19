@@ -31,18 +31,18 @@
 1:SpaceTuxLibrary, SpaceTuxLibrary.version
 
 # 2:PROJNAME, PROJFILE, VERSIONFILE, PLUGINSFOLDER
-2:KSP_ColorPicker,KSP_ColorPicker/KSP_ColorPicker.csproj,KSP_ColorPicker.version,GameData/SpaceTuxLibrary/Plugins
-2:KSP_PartHighlighter,KSP_PartHighlighter/KSP_PartHighlighter.csproj,KSP_PartHighlighter.version,GameData/SpaceTuxLibrary/Plugins
-2:KSP_Log,KSP_Log/KSP_Log.csproj,KSP_Log.version,GameData/SpaceTuxLibrary/Plugins
+2:KSP_ColorPicker,KSP_ColorPicker/KSP_ColorPicker.csproj,KSP_ColorPicker.oversion,GameData/SpaceTuxLibrary/Plugins
+2:KSP_PartHighlighter,KSP_PartHighlighter/KSP_PartHighlighter.csproj,KSP_PartHighlighter.oversion,GameData/SpaceTuxLibrary/Plugins
+2:KSP_Log,KSP_Log/KSP_Log.csproj,KSP_Log.oversion,GameData/SpaceTuxLibrary/Plugins
 
 # 3:SOURCEFILE, DESTDIR
 3:SpaceTuxLibrary.version,GameData/SpaceTuxLibrary
 3:License.md,GameData/SpaceTuxLibrary
 3:ReadMe.md,GameData/SpaceTuxLibrary
 
-3:KSP_ColorPicker.version,GameData/SpaceTuxLibrary
-3:KSP_Log.version,GameData/SpaceTuxLibrary
-3:KSP_PartHighlighter.version,GameData/SpaceTuxLibrary
+3:KSP_ColorPicker.oversion,GameData/SpaceTuxLibrary
+3:KSP_Log.oversion,GameData/SpaceTuxLibrary
+3:KSP_PartHighlighter.oversion,GameData/SpaceTuxLibrary
 
 
 #
