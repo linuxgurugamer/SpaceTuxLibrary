@@ -20,7 +20,7 @@ namespace KSPColorPicker
     internal class InstallChecker : MonoBehaviour
     {
         private const string MODNAME = "KSP ColorPicker";
-        private const string FOLDERNAME = "KSP_ColorPicker";
+        private const string FOLDERNAME = "SpaceTuxLibrary";
         private const string EXPECTEDPATH = FOLDERNAME + "/Plugins";
 
         protected void Start()

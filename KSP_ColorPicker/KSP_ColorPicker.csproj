@@ -7,7 +7,7 @@
     <ProjectGuid>{AC1CCB95-383D-468A-A659-7161117F8A8F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KSP_ColorPicker</RootNamespace>
+    <RootNamespace>KSPColorPicker</RootNamespace>
     <AssemblyName>KSP_ColorPicker</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -63,6 +63,7 @@
     <Compile Include="ColorPicker.cs" />
     <Compile Include="InstallChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AssemblyVersion.tt">
