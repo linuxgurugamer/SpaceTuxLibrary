@@ -10,3 +10,6 @@
 0.0.2.0
 	Rebuild for 1.8.0
 	Updated InstallChecker.cs
+
+0.0.2.1
+	Updated MiniAVC to 1.4.0
