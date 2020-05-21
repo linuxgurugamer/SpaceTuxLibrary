@@ -21,3 +21,6 @@ ChangeLog
 
 0.0.2.3
 	Really did the MiniAVC update
+
+0.0.2.4
+	Fixed URLs in .version files

@@ -1,6 +1,6 @@
 {
   "NAME": "PartHighlighter",
-  "URL": "https://ksp.spacetux.net/avc/KSP_PartHighlighter",
+  "URL": "http://ksp.spacetux.net/avc/KSP_PartHighlighter",
   "DOWNLOAD": "https://github.com/linuxgurugamer/SpaceTuxLibrary/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",
@@ -11,7 +11,7 @@
     "MAJOR": 0,
     "MINOR": 1,
     "PATCH": 0,
-    "BUILD": 1
+    "BUILD": 2
   },
   "KSP_VERSION_MIN": {
     "MAJOR": 1,

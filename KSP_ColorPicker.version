@@ -1,6 +1,6 @@
 {
   "NAME": "KSP_ColorPicker",
-  "URL": "https://ksp.spacetux.net/avc/KSP_ColorPicker",
+  "URL": "http://ksp.spacetux.net/avc/KSP_ColorPicker",
   "DOWNLOAD": "https://github.com/linuxgurugamer/KSP_ColorPicker/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",
@@ -11,7 +11,7 @@
     "MAJOR": 0,
     "MINOR": 1,
     "PATCH": 0,
-    "BUILD": 1
+    "BUILD": 2
   },
   "KSP_VERSION_MIN": {
     "MAJOR": 1,
