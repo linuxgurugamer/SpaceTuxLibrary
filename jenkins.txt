@@ -40,9 +40,9 @@
 3:License.md,GameData/SpaceTuxLibrary
 3:ReadMe.md,GameData/SpaceTuxLibrary
 
-3:KSP_ColorPicker.version,GameData/SpaceTuxLibrary
-3:KSP_Log.version,GameData/SpaceTuxLibrary
-3:KSP_PartHighlighter.version,GameData/SpaceTuxLibrary
+#3:KSP_ColorPicker.version,GameData/SpaceTuxLibrary
+#3:KSP_Log.version,GameData/SpaceTuxLibrary
+#3:KSP_PartHighlighter.version,GameData/SpaceTuxLibrary
 
 
 #
