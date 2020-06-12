@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP_ColorPicker", "KSP_ColorPicker\KSP_ColorPicker.csproj", "{AC1CCB95-383D-468A-A659-7161117F8A8F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5116282D-E08F-4414-93F7-E2C3DFDA5C86}"
 	ProjectSection(SolutionItems) = preProject
 		buildRelease.bat = buildRelease.bat
+		ButtonManager.version = ButtonManager.version
 		ChangeLog.txt = ChangeLog.txt
 		copyDLLtoPlugins.bat = copyDLLtoPlugins.bat
 		deploy.bat = deploy.bat
@@ -32,6 +33,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP_Log", "KSP_Log\KSP_Log.csproj", "{D4353784-80E0-4EC2-A13E-ABBD09EA1A78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTransforms", "ListTransforms\ListTransforms.csproj", "{024152F2-BCBE-4877-B3EB-96D06192032F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonManager", "ButtonManager\ButtonManager.csproj", "{344C51CC-95C8-4B6C-882C-0467A627173D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +58,10 @@ Global
 		{024152F2-BCBE-4877-B3EB-96D06192032F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{024152F2-BCBE-4877-B3EB-96D06192032F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{024152F2-BCBE-4877-B3EB-96D06192032F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{344C51CC-95C8-4B6C-882C-0467A627173D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{344C51CC-95C8-4B6C-882C-0467A627173D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{344C51CC-95C8-4B6C-882C-0467A627173D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{344C51CC-95C8-4B6C-882C-0467A627173D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

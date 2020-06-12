@@ -1,6 +1,6 @@
 {
-  "NAME": "KSP_Log",
-  "URL": "http://ksp.spacetux.net/avc/KSP_Log",
+  "NAME": "ButtonManager",
+  "URL": "http://ksp.spacetux.net/avc/SpaceTuxLibrary",
   "DOWNLOAD": "https://github.com/linuxgurugamer/SpaceTuxLibrary/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",
@@ -9,9 +9,9 @@
   },
   "VERSION": {
     "MAJOR": 0,
-    "MINOR": 1,
-    "PATCH": 0,
-    "BUILD": 2
+    "MINOR": 0,
+    "PATCH": 1,
+    "BUILD": 0
   },
   "KSP_VERSION_MIN": {
     "MAJOR": 1,

@@ -24,3 +24,6 @@ ChangeLog
 
 0.0.2.4
 	Fixed URLs in .version files
+
+0.0.3
+	Added the ButtonManager

@@ -34,11 +34,13 @@
 2:KSP_ColorPicker,KSP_ColorPicker/KSP_ColorPicker.csproj,KSP_ColorPicker.version,GameData/SpaceTuxLibrary/Plugins
 2:KSP_PartHighlighter,KSP_PartHighlighter/KSP_PartHighlighter.csproj,KSP_PartHighlighter.version,GameData/SpaceTuxLibrary/Plugins
 2:KSP_Log,KSP_Log/KSP_Log.csproj,KSP_Log.version,GameData/SpaceTuxLibrary/Plugins
+2:ButtonManager,ButtonManager/ButtonManager.csproj,ButtonManager.version,GameData/SpaceTuxLibrary/Plugins
 
 # 3:SOURCEFILE, DESTDIR
 3:SpaceTuxLibrary.version,GameData/SpaceTuxLibrary
 3:License.md,GameData/SpaceTuxLibrary
 3:ReadMe.md,GameData/SpaceTuxLibrary
+3:ButtonManager.version,GameData/SpaceTuxLibrary
 
 #3:KSP_ColorPicker.version,GameData/SpaceTuxLibrary
 #3:KSP_Log.version,GameData/SpaceTuxLibrary
