@@ -1,15 +1,16 @@
 {
   "NAME": "ButtonManager",
-  "URL": "http://ksp.spacetux.net/avc/ButtonManager",
-  "DOWNLOAD": "https://github.com/linuxgurugamer/ButtonManager/releases",
+  "URL": "http://ksp.spacetux.net/avc/SpaceTuxLibrary",
+  "DOWNLOAD": "https://github.com/linuxgurugamer/SpaceTuxLibrary/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",
-    "REPOSITORY": "ButtonManager"
+    "REPOSITORY": "SpaceTuxLibrary",
+    "ALLOW_PRE_RELEASE": false
   },
   "VERSION": {
     "MAJOR": 0,
     "MINOR": 0,
-    "PATCH": 0,
+    "PATCH": 1,
     "BUILD": 0
   },
   "KSP_VERSION_MIN": {

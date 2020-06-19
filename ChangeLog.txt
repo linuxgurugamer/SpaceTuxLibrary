@@ -27,3 +27,5 @@ ChangeLog
 
 0.0.3
 	Added the ButtonManager
+	Added SpaceTuxUtility
+	Added VesselModuleSave

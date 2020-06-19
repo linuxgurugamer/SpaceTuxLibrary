@@ -6,7 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP_ColorPicker", "KSP_ColorPicker\KSP_ColorPicker.csproj", "{AC1CCB95-383D-468A-A659-7161117F8A8F}"
 	ProjectSection(ProjectDependencies) = postProject
 		{050C9E13-F2A0-46BE-B3AC-5AB4DC8B8954} = {050C9E13-F2A0-46BE-B3AC-5AB4DC8B8954}
+		{D5608037-2C1D-45F1-9C17-051E3417E644} = {D5608037-2C1D-45F1-9C17-051E3417E644}
 		{D4353784-80E0-4EC2-A13E-ABBD09EA1A78} = {D4353784-80E0-4EC2-A13E-ABBD09EA1A78}
+		{344C51CC-95C8-4B6C-882C-0467A627173D} = {344C51CC-95C8-4B6C-882C-0467A627173D}
+		{44B140F8-7FD0-414B-ADC5-FE924AD06454} = {44B140F8-7FD0-414B-ADC5-FE924AD06454}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5116282D-E08F-4414-93F7-E2C3DFDA5C86}"
@@ -23,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		License.md = License.md
 		ReadMe.md = ReadMe.md
 		SpaceTuxLibrary.version = SpaceTuxLibrary.version
+		SpaceTuxUtility.version = SpaceTuxUtility.version
+		VesselModuleSave.version = VesselModuleSave.version
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP_PartHighlighter", "KSP_PartHighlighter\KSP_PartHighlighter.csproj", "{050C9E13-F2A0-46BE-B3AC-5AB4DC8B8954}"
@@ -33,8 +38,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP_Log", "KSP_Log\KSP_Log.csproj", "{D4353784-80E0-4EC2-A13E-ABBD09EA1A78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTransforms", "ListTransforms\ListTransforms.csproj", "{024152F2-BCBE-4877-B3EB-96D06192032F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{050C9E13-F2A0-46BE-B3AC-5AB4DC8B8954} = {050C9E13-F2A0-46BE-B3AC-5AB4DC8B8954}
+		{D4353784-80E0-4EC2-A13E-ABBD09EA1A78} = {D4353784-80E0-4EC2-A13E-ABBD09EA1A78}
+		{AC1CCB95-383D-468A-A659-7161117F8A8F} = {AC1CCB95-383D-468A-A659-7161117F8A8F}
+		{344C51CC-95C8-4B6C-882C-0467A627173D} = {344C51CC-95C8-4B6C-882C-0467A627173D}
+		{44B140F8-7FD0-414B-ADC5-FE924AD06454} = {44B140F8-7FD0-414B-ADC5-FE924AD06454}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonManager", "ButtonManager\ButtonManager.csproj", "{344C51CC-95C8-4B6C-882C-0467A627173D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceTuxUtility", "Utility\SpaceTuxUtility.csproj", "{44B140F8-7FD0-414B-ADC5-FE924AD06454}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VesselModuleSave", "VesselModuleSave\VesselModuleSave.csproj", "{D5608037-2C1D-45F1-9C17-051E3417E644}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +78,14 @@ Global
 		{344C51CC-95C8-4B6C-882C-0467A627173D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{344C51CC-95C8-4B6C-882C-0467A627173D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{344C51CC-95C8-4B6C-882C-0467A627173D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44B140F8-7FD0-414B-ADC5-FE924AD06454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44B140F8-7FD0-414B-ADC5-FE924AD06454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44B140F8-7FD0-414B-ADC5-FE924AD06454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44B140F8-7FD0-414B-ADC5-FE924AD06454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5608037-2C1D-45F1-9C17-051E3417E644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5608037-2C1D-45F1-9C17-051E3417E644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5608037-2C1D-45F1-9C17-051E3417E644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5608037-2C1D-45F1-9C17-051E3417E644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

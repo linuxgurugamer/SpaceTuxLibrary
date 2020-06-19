@@ -13,9 +13,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using static ButtonManager.Constants;
 
-namespace ButtonManager
+namespace VesselModuleSaveFramework
 {
     [KSPAddon(KSPAddon.Startup.Instantly, true)]
     internal class Startup : MonoBehaviour
@@ -41,8 +40,8 @@ namespace ButtonManager
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     internal class InstallChecker : MonoBehaviour
     {
-        private const string MODNAME = "Button Manager";
-        private const string FOLDERNAME = FOLDER;
+        private const string MODNAME = "VesselModuleSave";
+        private const string FOLDERNAME = "SpaceTuxLibrary";
         private const string EXPECTEDPATH = FOLDERNAME + "/Plugins";
 
         protected void Start()

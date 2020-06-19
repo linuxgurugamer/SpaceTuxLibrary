@@ -9,6 +9,8 @@ using UnityEngine;
 
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static ButtonManager.Constants;
+
 
 namespace ButtonManager
 {
@@ -76,9 +78,9 @@ namespace ButtonManager
 
     public class BtnManager
     {
-#region Statics
+        #region Statics
         static BtnManager instance;
-
+         
 
         // All active buttons in a scene 
         static internal Dictionary<string, SceneButton> activeSceneButtons = new Dictionary<string, SceneButton>();
@@ -100,7 +102,7 @@ namespace ButtonManager
         //static int id = -1;
         static bool eventInitialized = false;
         static UnityAction launchDelegate;
-#endregion
+        #endregion
 
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace ButtonManager
             if (HighLogic.CurrentGame == null)
                 return;
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode)
-                Constants.Log.Detail("onGameSceneLoadRequested, clearing out all data");
+                Log.Detail("onGameSceneLoadRequested, clearing out all data");
 
             activeSceneButtons.Clear();
         }
@@ -143,7 +145,7 @@ namespace ButtonManager
                 instance.InitEvent();
             }
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode && modName != null)
-                Constants.Log.Detail("InitializeListener: " + modName);
+                Log.Detail("InitializeListener: " + modName);
 
             SceneButton sb = new SceneButton(button, gameDelegateMethod, activeSceneButtons.Count);
 
@@ -185,36 +187,43 @@ namespace ButtonManager
         /// <param name="modDisplayName"></param>
         /// <param name="priority"></param>
         /// <returns>delegateID assigned to this listener</returns>
-        public static int AddListener(UnityEngine.UI.Button button,  UnityAction delegateMethod, string modName, string modDisplayName, int priority = 5)
+        public static int AddListener(UnityEngine.UI.Button button, UnityAction delegateMethod, string modName, string modDisplayName, int priority = 5)
         {
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode)
-                Constants.Log.Detail("AddListener: " + modName);
+                Log.Detail("AddListener: " + modName);
 
-            string uniqueKey = SceneButton.GetUniqueKey(HighLogic.LoadedScene,button.gameObject.name);
+            string uniqueKey = SceneButton.GetUniqueKey(HighLogic.LoadedScene, button.gameObject.name);
             if (!activeSceneButtons.ContainsKey(uniqueKey))
             {
-                Constants.Log.Error("Unknown button passed in to AddListener");
+                Log.Error("Unknown button passed in to AddListener");
                 return -1;
             }
 
             priority = Math.Max(Math.Min(priority, 10), 1);
 
-            var bd = new ModDelegateDefinition(button, activeSceneButtons[uniqueKey].sortedListRef.Count, priority, delegateMethod,  modName, modDisplayName);
+            var bd = new ModDelegateDefinition(button, activeSceneButtons[uniqueKey].sortedListRef.Count, priority, delegateMethod, modName, modDisplayName);
 
             if (allSavedDelegateRef.ContainsKey(bd.UniqueKey))
             {
                 bd.userPriority = allSavedDelegateRef[bd.UniqueKey].userPriority;
                 allSavedDelegateRef.Remove(bd.UniqueKey);
             }
+            Log.Info("AddListener 2");
+
             if (allDelegateRef.ContainsKey(bd.UniqueKey))
             {
+                Log.Info("AddListener 2.1");
                 var oldBd = allDelegateRef[bd.UniqueKey];
-                string sortKey = oldBd.SortKey;
-                activeSceneButtons[uniqueKey].sortedListRef.Add(oldBd.SortKey, oldBd);
-
+                oldBd.UpdateButton(button); 
+                if (oldBd.SortKey != "")
+                {
+                    string sortKey = oldBd.SortKey;
+                    activeSceneButtons[uniqueKey].sortedListRef.Add(oldBd.SortKey, oldBd);
+                }
             }
             else
             {
+                Log.Info("AddListener 2.2");
                 allDelegateRef.Add(bd.UniqueKey, bd);
                 string sortKey = bd.SortKey;
                 activeSceneButtons[uniqueKey].sortedListRef.Add(bd.SortKey, bd);
@@ -231,7 +240,7 @@ namespace ButtonManager
         /// Simple delegate destinations 
         /// </summary>
 
-#region Delegates
+        #region Delegates
         static void DelegateCall_0() { DelegateCall(0); }
         static void DelegateCall_1() { DelegateCall(1); }
         static void DelegateCall_2() { DelegateCall(2); }
@@ -243,7 +252,7 @@ namespace ButtonManager
         static void DelegateCall_8() { DelegateCall(8); }
         static void DelegateCall_9() { DelegateCall(9); }
         static void DelegateCall_10() { DelegateCall(10); }
-#endregion
+        #endregion
 
         /// <summary>
         /// The initial call when the button is pressed
@@ -252,7 +261,7 @@ namespace ButtonManager
         static void DelegateCall(int currentDelegateId)
         {
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode)
-                Constants.Log.Detail("DelegateCall, currentDelegateId: " + currentDelegateId);
+                Log.Detail("DelegateCall, currentDelegateId: " + currentDelegateId);
 
             var scb = activeSceneButtons[delegateIdToSceneButton[currentDelegateId]];
 
@@ -270,7 +279,7 @@ namespace ButtonManager
         public static void InvokeNextDelegate(int currentDelegateId, string modName)
         {
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode)
-                Constants.Log.Detail("InvokeNextDelegate: " + modName + ", currentDelegateId: " + currentDelegateId);
+                Log.Detail("InvokeNextDelegate: " + modName + ", currentDelegateId: " + currentDelegateId);
 
             var scb = activeSceneButtons[delegateIdToSceneButton[currentDelegateId]];
             if (!scb.listEnumerator.MoveNext())
@@ -291,22 +300,9 @@ namespace ButtonManager
 
             var bdd = scb.listEnumerator.Current.Value;
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode)
-                Constants.Log.Detail("CommonDelegateCall mod: " + bdd.modDisplayName);
+                Log.Detail("CommonDelegateCall mod: " + bdd.modDisplayName);
 
             bdd.delegateMethod();
         }
-
-
-#if false
-        public static void SetModeSequential()
-        {
-
-        }
-        public static void SetModeSimultaneous()
-        {
-        }
-#endif
-
-
     }
 }

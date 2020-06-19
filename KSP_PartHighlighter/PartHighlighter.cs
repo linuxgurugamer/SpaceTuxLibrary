@@ -6,6 +6,9 @@ using KSP_Log;
 
 namespace KSP_PartHighlighter
 {
+    /// <summary>
+    /// A small class which will highlight specified parts in a flashing pattern. Speed is configurable
+    /// </summary>
     public class PartHighlighter : MonoBehaviour
     {
         // Private fields
@@ -32,6 +35,10 @@ namespace KSP_PartHighlighter
 
         private Dictionary<int, HighlightParts> hPartsLists = null;
 
+        /// <summary>
+        /// Creates a new PartHighlighter
+        /// </summary>
+        /// <returns>Instance of the new PartHighlighter</returns>
         public static PartHighlighter CreatePartHighlighter()
         {
             if (Instance != null)
@@ -61,17 +68,27 @@ namespace KSP_PartHighlighter
             return true;
         }
 
-        public int CreateHighlightList(float interval, Color c)
+        /// <summary>
+        /// Create a new Highlight List with the interval and Color specified
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <param name="color"></param>
+        /// <returns>HighlightList id</returns>
+        public int CreateHighlightList(float interval, Color color)
         {
             int id = CreateHighlightList(interval);
             if (id >= 0)
             {
-                UpdateHighlightColors(id, c);
+                UpdateHighlightColors(id, color);
             }
             return id;
         }
 
-
+        /// <summary>
+        /// Create a new HighlightList with the interval specified
+        /// </summary>
+        /// <param name="interval"></param>
+        /// <returns>HighlightList id</returns>
         public int CreateHighlightList(float interval = 1f)
         {
             if (!CheckInit())
@@ -95,6 +112,11 @@ namespace KSP_PartHighlighter
             }
         }
 
+        /// <summary>
+        /// Destroy the specified HighlightList
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>True if successful</returns>
         public bool DestroyHighlightList(int id)
         {
             if (!CheckInit())
@@ -108,6 +130,12 @@ namespace KSP_PartHighlighter
             return false;
         }
 
+        /// <summary>
+        /// Sets the highlighting active or inactive for the specified HighlightList
+        /// </summary>
+        /// <param name="id">HighlightList id</param>
+        /// <param name="active"></param>
+        /// <returns>True if successful</returns>
         public bool SetHighlighting(int id, bool active)
         {
             if (!CheckInit())
@@ -116,6 +144,13 @@ namespace KSP_PartHighlighter
             return true;
         }
 
+        /// <summary>
+        /// Highlights a single part with the color and edgecolor
+        /// </summary>
+        /// <param name="highlightC">Main color for part highlight</param>
+        /// <param name="edgeHighlightColor">Color for the edge highlight</param>
+        /// <param name="p"></param>
+        /// <returns>True if successful</returns>
         public bool HighlightSinglePart(Color highlightC, Color edgeHighlightColor, Part p)
         {
             if (!CheckInit())
@@ -138,20 +173,32 @@ namespace KSP_PartHighlighter
             }
         }
 
-        public bool AddPartToHighlight(int id, Part p)
+        /// <summary>
+        /// Adds a part to to a HighlightList
+        /// </summary>
+        /// <param name="id">ID of the HighlightList</param>
+        /// <param name="part"></param>
+        /// <returns></returns>
+        public bool AddPartToHighlight(int id, Part part)
         {
             if (!CheckInit())
                 return false;
 
             if (hPartsLists.ContainsKey(id))
             {
-                if (hPartsLists[id].highlightParts.Contains(p))
+                if (hPartsLists[id].highlightParts.Contains(part))
                     return false;
-                hPartsLists[id].highlightParts.Add(p);
+                hPartsLists[id].highlightParts.Add(part);
             }
             return true;
         }
 
+        /// <summary>
+        /// Disable highlighting on a single part
+        /// </summary>
+        /// <param name="id">ID of highlight list</param>
+        /// <param name="part"></param>
+        /// <returns>True if successful</returns>
         public bool DisablePartHighlighting(int id, Part part)
         {
             if (!CheckInit())
@@ -199,6 +246,12 @@ namespace KSP_PartHighlighter
             }
         }
 
+        /// <summary>
+        /// Change the color for the specified HighlightList
+        /// </summary>
+        /// <param name="id">HighLishtList id</param>
+        /// <param name="newHighlightColor"></param>
+        /// <returns></returns>
         public bool UpdateHighlightColors(int id, Color newHighlightColor)
         {
             if (!CheckInit())

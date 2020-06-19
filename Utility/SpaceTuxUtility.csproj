@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{344C51CC-95C8-4B6C-882C-0467A627173D}</ProjectGuid>
+    <ProjectGuid>{44B140F8-7FD0-414B-ADC5-FE924AD06454}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ButtonManager</RootNamespace>
-    <AssemblyName>ButtonManager</AssemblyName>
+    <RootNamespace>SpaceTuxUtility</RootNamespace>
+    <AssemblyName>SpaceTuxUtility</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,13 +37,7 @@
     <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\UnityEngine*.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="ClickThroughBlocker">
-      <HintPath>R:\KSP_1.8.1_dev\GameData\000_ClickThroughBlocker\Plugins\ClickThroughBlocker.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="ToolbarControl">
-      <HintPath>R:\KSP_1.8.1_dev\GameData\001_ToolbarControl\Plugins\ToolbarControl.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyVersion.cs">
@@ -51,20 +45,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
-    <Compile Include="BtnManager.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="InstallChecker.cs" />
-    <Compile Include="ModDelegateDefinition.cs" />
-    <Compile Include="PriorityUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="ToolbarRegistration.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\KSP_Log\KSP_Log.csproj">
-      <Project>{d4353784-80e0-4ec2-a13e-abbd09ea1a78}</Project>
-      <Name>KSP_Log</Name>
-    </ProjectReference>
+    <Compile Include="VerifyAssemblyVersion.cs" />
+    <Compile Include="WindowHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AssemblyVersion.tt">
@@ -77,7 +61,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
+    <PreBuildEvent>"$(DevEnvDir)\texttransform.exe" "$(ProjectDir)AssemblyVersion.tt"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
     <PostBuildEvent>
+
+
 
 
 
@@ -87,8 +76,5 @@ start /D D:\Users\jbb\github\SpaceTuxLibrary /WAIT copyDLLtoPlugins.bat $(Target
 
 
 </PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>"$(DevEnvDir)\texttransform.exe" "$(ProjectDir)AssemblyVersion.tt"</PreBuildEvent>
   </PropertyGroup>
 </Project>

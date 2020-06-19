@@ -8,7 +8,9 @@ rem VERSIONFILE is the name of the version file, usually the same as GAMEDATA,
 rem    but not always
 
 set H=%KSPDIR%
-rem set H=R:\KSP_1.7.3-GC-OSE
+set H=R:\KSP_1.9.1_Tetrix_Debug
+set H=R:\KSP_1.9.1_dev
+
 set GAMEDIR=SpaceTuxLibrary
 set GAMEDATA="GameData"
 set VERSIONFILE=%GAMEDIR%.version
@@ -19,3 +21,7 @@ copy /Y %VERSIONFILE% %GAMEDATA%\%GAMEDIR%
 copy /Y %VERSIONFILE2% %GAMEDATA%\%GAMEDIR%
 
 xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
+
+echo Deployed
+
+pause

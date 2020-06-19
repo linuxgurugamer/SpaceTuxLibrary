@@ -12,7 +12,16 @@ namespace KSPColorPicker
 
     // Based on the following:  https://gist.github.com/boj/1181465
 
+    /// <summary>
+    /// This mod provides a simple ColorPicker for a mod.  It doesn't do anything by 
+    /// itself, it is a tool to be used by another mod.
 
+    /// This was originally written for use in the OSE Workshop, and is use by
+    /// both OSE Workshop and the PWB Fuel Balander mods
+    /// 
+    /// Note that there is a Unity class called ColorPicker.In order to differentiate
+    /// this mod, it's called KSP_ColorPicker
+    /// </summary>
     public class KSP_ColorPicker : MonoBehaviour
     {
         // Public fields
@@ -80,12 +89,39 @@ namespace KSPColorPicker
             return result;
         }
 
+        /// <summary>
+        /// Create a Color Picker process with initialColor, texturePath and activePingsNeeded
+        /// </summary>
+        /// <param name="initialColor">Sets the initial color</param>
+        /// <param name="texturePath">Path to a ColorPicker texture</param>
+        /// <param name="activePingsNeeded"></param>
+        /// <returns>KSP_ColorPicker</returns>
         public static KSP_ColorPicker CreateColorPicker(Color initialColor, string texturePath, bool activePingsNeeded = true)
         { return CreateColorPicker(initialColor, false, texturePath, 0, 0, activePingsNeeded, true); }
 
+        /// <summary>
+        /// Create a Color Picker process with initialColor, texturePath and activePingsNeeded, and destroyOnClose
+        /// </summary>
+        /// <param name="initialColor">Sets the initial color</param>
+        /// <param name="texturePath">Path to a ColorPicker texture</param>
+        /// <param name="activePingsNeeded">If true, window needs frequent "pings" to not automatically close</param>
+        /// <param name="destroyOnClose">If true, then destroys the window when closed</param>
+        /// <returns>KSP_ColorPicker</returns>
+        /// 
         public static KSP_ColorPicker CreateColorPicker(Color initialColor, string texturePath = null, bool activePingsNeeded = true, bool destroyOnClose = true)
         { return CreateColorPicker(initialColor, false, texturePath, 0, 0, activePingsNeeded, destroyOnClose); }
 
+        /// <summary>
+        /// Create a Color Picker process with initialColor, useDefinedPosition, texturePath pLeft, pTop, activePingsNeeded,  destroyOnClose
+        /// </summary>
+        /// <param name="initialColor">Sets the initial color</param>
+        /// <param name="useDefinedPosition">Indicates whether a user-defined position is specified </param>
+        /// <param name="texturePath">Path to a ColorPicker texture</param>
+        /// <param name="pLeft">Left most pixel position of the window</param>
+        /// <param name="pTop">Top most pixel position of the window</param>
+        /// <param name="activePingsNeeded">If true, window needs frequent "pings" to not automatically close</param>
+        /// <param name="destroyOnClose">If true, then destroys the window when closed</param>
+        /// <returns>KSP_ColorPicker</returns>
         public static KSP_ColorPicker CreateColorPicker(Color initialColor, bool useDefinedPosition = false, string texturePath = null,
             int pLeft = 0, int pTop = 0, bool activePingsNeeded = true, bool destroyOnClose = true)
         {
@@ -111,6 +147,9 @@ namespace KSPColorPicker
             return colorPickerInstance;
         }
 
+        /// <summary>
+        /// If true, uses the standard KSP skin
+        /// </summary>
         public bool UseKSPskin { private get; set; } = true;
         static string[] pickerTextures;
 
@@ -174,7 +213,7 @@ namespace KSPColorPicker
             // small color picker box texture
             styleTexture = new Texture2D(1, 1);
             styleTexture.SetPixel(0, 0, selectedColor);
-            _windowPos = new Rect(positionLeft, positionTop, textureWidth + 70, textureHeight + 70+ TITLE_HEIGHT);
+            _windowPos = new Rect(positionLeft, positionTop, textureWidth + 70, textureHeight + 70 + TITLE_HEIGHT);
 
             styleTextureStyle = new GUIStyle();
         }
@@ -217,7 +256,7 @@ namespace KSPColorPicker
         const int TITLE_HEIGHT = 25;
         void DrawWindowContents(int id)
         {
-            GUI.Box(new Rect(3, TITLE_HEIGHT +3, textureWidth + BOTTOM_RIGHT_MARGIN, textureHeight + BOTTOM_RIGHT_MARGIN), "");
+            GUI.Box(new Rect(3, TITLE_HEIGHT + 3, textureWidth + BOTTOM_RIGHT_MARGIN, textureHeight + BOTTOM_RIGHT_MARGIN), "");
 
             if (GUI.RepeatButton(new Rect(6, TITLE_HEIGHT + 6, textureWidth + 10, textureHeight + 10), displayPicker, GUIStyle.none))
             {

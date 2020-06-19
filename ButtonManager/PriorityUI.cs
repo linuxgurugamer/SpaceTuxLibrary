@@ -1,15 +1,16 @@
 ﻿using KSP.UI.Screens;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
 using ClickThroughFix;
 using ToolbarControl_NS;
-using ButtonManager;
+using static ButtonManager.Constants;
 
-namespace ButtonManagerMod
+namespace ButtonManager
 {
+
     [KSPAddon(KSPAddon.Startup.AllGameScenes, true)]
     public class PriorityUI : MonoBehaviour
     {
@@ -23,7 +24,6 @@ namespace ButtonManagerMod
 
         void Start()
         {
-            SetupToolbar();
             DontDestroyOnLoad(this);
             _windowId = 21398734;
             _windowPosition = new Rect((Screen.width - WIDTH) / 2, (Screen.height - HEIGHT) / 2, WIDTH, HEIGHT);
@@ -31,7 +31,7 @@ namespace ButtonManagerMod
             if (upArrow == null)
             {
                 upArrow = new Texture2D(2, 2);
-                if (ToolbarControl.LoadImageFromFile(ref upArrow, KSPUtil.ApplicationRootPath + "GameData/" + Constants.FOLDER + "/ PluginData/Textures/up"))
+                if (ToolbarControl.LoadImageFromFile(ref upArrow, KSPUtil.ApplicationRootPath + "GameData/" + FOLDER + "/PluginData/Textures/up"))
                     upContent = new GUIContent("", upArrow, "");
                 else
                     upContent = new GUIContent("^", null, "");
@@ -39,14 +39,14 @@ namespace ButtonManagerMod
             if (downArrow == null)
             {
                 downArrow = new Texture2D(2, 2);
-                if (ToolbarControl.LoadImageFromFile(ref downArrow, KSPUtil.ApplicationRootPath + "GameData/" + Constants.FOLDER + "/ PluginData/Textures/down"))
+                if (ToolbarControl.LoadImageFromFile(ref downArrow, KSPUtil.ApplicationRootPath + "GameData/" + FOLDER + "/PluginData/Textures/down"))
                     downContent = new GUIContent("", downArrow, "");
                 else
                     downContent = new GUIContent("v", null, "");
             }
 
-
-
+            InvokeRepeating("CheckButtons", 0f, 1f);
+            StartCoroutine(CheckButtons());
         }
 
         ToolbarControl toolbarControl = null;
@@ -70,8 +70,8 @@ namespace ButtonManagerMod
                 ApplicationLauncher.AppScenes.TRACKSTATION,
                 MODID,
                 "ButtonManagerBtn",
-                "ButtonManager/PluginData/Textures/buttonManager-38",
-                "ButtonManager/PluginData/Textures/buttonManager-24",
+                FOLDER + "/PluginData/Textures/buttonManager-38",
+                FOLDER + "/PluginData/Textures/buttonManager-24",
                 MODNAME
             );
         }
@@ -85,11 +85,40 @@ namespace ButtonManagerMod
             }
         }
 
+        IEnumerator CheckButtons()
+        {
+            while (true)
+            {
+                bool multipleDelegates = false;
+                foreach (ButtonManager.SceneButton b in BtnManager.activeSceneButtons.Values)
+                {
+                    if (b.sortedListRef.Count > 1)
+                    {
+                        if (toolbarControl == null)
+                            SetupToolbar();
+                        multipleDelegates = true;
+                        break;
+                    }
+                }
+
+                if ( !multipleDelegates &&  toolbarControl != null)
+                {
+                    toolbarControl.OnDestroy();
+                    Destroy(toolbarControl);
+                }
+
+                yield return new WaitForSeconds(1f);
+            }
+        }
+    
+
+
         static GUIStyle buttonStyleUp, buttonStyleDown;
         static bool styleInitted = false;
 
         void OnGUI()
         {
+            // need to hide if nthing
             if (isVisible)
             {
                 if (!styleInitted)
@@ -118,6 +147,10 @@ namespace ButtonManagerMod
         bool resortNeeded = true;
         void Display(int id)
         {
+            if (BtnManager.activeSceneButtons.Count == 1)
+            {
+                selectedButtonMods = BtnManager.activeSceneButtons.Values.First();
+            }
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical();
 
