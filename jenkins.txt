@@ -42,11 +42,14 @@
 3:SpaceTuxLibrary.version,GameData/SpaceTuxLibrary
 3:License.md,GameData/SpaceTuxLibrary
 3:ReadMe.md,GameData/SpaceTuxLibrary
-3:ButtonManager.version,GameData/SpaceTuxLibrary
 
-#3:KSP_ColorPicker.version,GameData/SpaceTuxLibrary
-#3:KSP_Log.version,GameData/SpaceTuxLibrary
-#3:KSP_PartHighlighter.version,GameData/SpaceTuxLibrary
+3:ButtonManager.version,GameData/SpaceTuxLibrary
+3:KSP_ColorPicker.version,GameData/SpaceTuxLibrary
+3:KSP_Log.version,GameData/SpaceTuxLibrary
+3:KSP_PartHighlighter.version,GameData/SpaceTuxLibrary
+3:SpaceTuxLibrary.version,GameData/SpaceTuxLibrary
+3:SpacetuxUtility.version,GameData/SpaceTuxLibrary
+3:VesselModuleSave.version,GameData/SpaceTuxLibrary
 
 
 #

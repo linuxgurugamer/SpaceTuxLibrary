@@ -29,3 +29,6 @@ ChangeLog
 	Added the ButtonManager
 	Added SpaceTuxUtility
 	Added VesselModuleSave
+
+0.0.3.1 (unreleased)
+	Added HasMod to utility
