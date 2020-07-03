@@ -1,6 +1,6 @@
 {
-  "NAME": "PartHighlighter",
-  "URL": "http://ksp.spacetux.net/avc/KSP_PartHighlighter",
+  "NAME": "KSPLog",
+  "URL": "http://ksp.spacetux.net/avc/KSP_Log",
   "DOWNLOAD": "https://github.com/linuxgurugamer/SpaceTuxLibrary/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",

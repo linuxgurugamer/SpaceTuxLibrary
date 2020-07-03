@@ -1,10 +1,10 @@
 {
-  "NAME": "KSP_ColorPicker",
-  "URL": "http://ksp.spacetux.net/avc/KSP_ColorPicker",
-  "DOWNLOAD": "https://github.com/linuxgurugamer/KSP_ColorPicker/releases",
+  "NAME": "KSPPartHighlighter",
+  "URL": "http://ksp.spacetux.net/avc/KSP_PartHighlighter",
+  "DOWNLOAD": "https://github.com/linuxgurugamer/SpaceTuxLibrary/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",
-    "REPOSITORY": "KSP_ColorPicker",
+    "REPOSITORY": "SpaceTuxLibrary",
     "ALLOW_PRE_RELEASE": false
   },
   "VERSION": {

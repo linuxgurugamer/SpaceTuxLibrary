@@ -33,3 +33,6 @@ ChangeLog
 
 0.0.3.1
 	Version bump for Spacedock
+
+0.0.3.2
+	Fixed names of version files (removed underscores)
