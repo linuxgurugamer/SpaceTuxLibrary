@@ -64,3 +64,6 @@ ChangeLog
 		Created example logging code
 		Created README with sample usage
 		Increment version in KSPAssembly
+
+0.0.3.4
+	Fixed URL in ButtonManager.version file 
