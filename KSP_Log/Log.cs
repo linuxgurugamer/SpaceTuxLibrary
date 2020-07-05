@@ -1,11 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
+﻿///
+/// Define Log as a internal or public static in a single class
+/// Make sure it is initialized before first use
+/// Use the "using static" directive to remove the need to reference the entire class path:
+/// 
+/// 
+/// using static MyNameSpace.MyClass;
+/// 
+/// [KSPAddon(KSPAddon.Startup.Instantly, true)]
+/// public class InitLog : MonoBehaviour
+/// {
+///     protected void Awake()
+///     {
+///         Log = new KSP_Log.Log("DangIt"
+/// #if DEBUG
+///                 , KSP_Log.Log.LEVEL.INFO
+/// #endif
+///                 );
+///     }
+/// }
+/// 
+/// ===========================
+/// 
+/// using KSP_Log;
+/// namespace MyNameSpace
+/// {
+///     public class MyClass
+///     {
+///         public static KSP_Log.Log Log;
+///     }
+/// }
+/// ===========================
+/// 
+/// using static MyNameSpace.MyClass;
+/// Class SecondClass
+/// {
+///     void Start()
+///     {
+///         Log.Info("Start");
+///         
+using System;
 
 namespace KSP_Log
-
 {
     /// <summary>
     /// Logging class
@@ -36,6 +71,17 @@ namespace KSP_Log
         }
 
         /// <summary>
+        /// Initialize the class and set the level
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="level"></param>
+        public Log(string title, LEVEL level)
+        {
+            setTitle(title);
+            SetLevel(level);
+        }
+
+        /// <summary>
         /// Sets the title
         /// </summary>
         /// <param name="title">Title to be displayed in the log file as the prefix to a line</param>
@@ -47,7 +93,7 @@ namespace KSP_Log
         /// <summary>
         /// Current log level
         /// </summary>
-        public static LEVEL level = LEVEL.INFO;
+        public static LEVEL level = LEVEL.ERROR;
 
 
         /// <summary>
@@ -65,7 +111,6 @@ namespace KSP_Log
         /// <param name="level"></param>
         public void SetLevel(LEVEL level)
         {
-            UnityEngine.Debug.Log("log level " + level);
             Log.level = level;
         }
 
@@ -90,7 +135,7 @@ namespace KSP_Log
         /// <returns>True if logable</returns>
         public bool IsLogable(LEVEL level)
         {
-            return Log.level <= level;
+            return level >= Log.level;
         }
 
         /// <summary>
@@ -118,15 +163,19 @@ namespace KSP_Log
         }
 
         /// <summary>
+        /// Logs at a DETAIL level
+        /// </summary>
+        /// <param name="msg"></param>
+        public void Debug(string msg) => Detail(msg);
+
+        /// <summary>
         /// Logs at an INFO level.  If not compiled in DEBUG mode, this is compiled away by the compiler and does not log anything
         /// </summary>
         /// <param name="msg"></param>
-        [ConditionalAttribute("DEBUG")]
+        //[ConditionalAttribute("DEBUG")]
         public void Info(String msg)
         {
-
             if (IsLogable(LEVEL.INFO))
-
             {
                 UnityEngine.Debug.Log(PREFIX + msg);
             }
@@ -136,7 +185,7 @@ namespace KSP_Log
         /// Logs at any level.  If not compiled in DEBUG mode, this is compiled away by the compiler and does not log anything
         /// </summary>
         /// <param name="msg"></param>
-        [ConditionalAttribute("DEBUG")]
+        //[ConditionalAttribute("DEBUG")]
         public void Test(String msg)
         {
             //if (IsLogable(LEVEL.INFO))

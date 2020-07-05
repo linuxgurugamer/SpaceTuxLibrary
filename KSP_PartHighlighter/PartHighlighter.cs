@@ -25,6 +25,8 @@ namespace KSP_PartHighlighter
             internal float interval = 1.0f;
             internal float lastTimechange = Time.realtimeSinceStartup;
             internal bool highlight = false;
+            internal bool alwaysOn = false;
+            internal bool pause = false;
 
             internal Color highlightC = XKCDColors.Black;
             internal Color edgeHighlightColor = XKCDColors.Black;
@@ -33,7 +35,7 @@ namespace KSP_PartHighlighter
             internal List<Part> highlightParts;
         }
 
-        private Dictionary<int, HighlightParts> hPartsLists = null;
+        private static Dictionary<int, HighlightParts> hPartsLists = null;
 
         /// <summary>
         /// Creates a new PartHighlighter
@@ -55,14 +57,32 @@ namespace KSP_PartHighlighter
         //
         internal void Startup()
         {
-            hPartsLists = new Dictionary<int, HighlightParts>();
+            if (hPartsLists == null)
+                hPartsLists = new Dictionary<int, HighlightParts>();
+            if (Log == null)
+                Log = new Log("KSP_PartHighlighter");
+            Log.SetLevel(Log.LEVEL.DETAIL);
         }
 
         bool CheckInit()
         {
             if (hPartsLists == null)
             {
-                Log.Error("AddPartToHighlight, module not initialized");
+                Log.Error("CheckInit, module not initialized");
+                Log.Error("Stack: " + Environment.StackTrace);
+
+                return false;
+            }
+            return true;
+        }
+
+        bool CheckInit(int id)
+        {
+            if (!CheckInit()) return false;
+            if (!hPartsLists.ContainsKey(id))
+            {
+                Log.Error("CheckInit, id not found: " + id);
+                Log.Error("Stack: " + Environment.StackTrace);
                 return false;
             }
             return true;
@@ -101,6 +121,7 @@ namespace KSP_PartHighlighter
                 hp.highlightParts = new List<Part>();
                 hp.id = highlightCnt++;
                 hp.interval = interval;
+                hp.alwaysOn = (interval <= 0);
                 hp.loadedScene = HighLogic.LoadedScene;
                 hPartsLists.Add(hp.id, hp);
                 return hp.id;
@@ -113,13 +134,50 @@ namespace KSP_PartHighlighter
         }
 
         /// <summary>
+        /// Set the flash interval for the specified list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="interval"></param>
+        /// <returns></returns>
+        public bool SetFlashInterval(int id, float interval)
+        {
+            if (!CheckInit(id))
+                return false;
+
+            hPartsLists[id].interval = interval;
+            hPartsLists[id].alwaysOn = (interval <= 0);
+            return true;
+        }
+
+        /// <summary>
+        /// Pause highlighting on specified list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="pause"></param>
+        /// <returns></returns>
+        public bool PauseHighlighting(int id, bool pause)
+        {
+            if (!CheckInit(id))
+                return false;
+
+            if (pause)
+            {
+                HighlightPartsOff(hPartsLists[id]);
+            }
+            else
+                HighlightPartsOn(hPartsLists[id]);
+            hPartsLists[id].pause = pause;
+            return true;
+        }
+
+        /// <summary>
         /// Destroy the specified HighlightList
         /// </summary>
         /// <param name="id"></param>
         /// <returns>True if successful</returns>
         public bool DestroyHighlightList(int id)
         {
-            if (!CheckInit())
+            if (!CheckInit(id))
                 return false;
 
             if (hPartsLists.ContainsKey(id))
@@ -138,7 +196,7 @@ namespace KSP_PartHighlighter
         /// <returns>True if successful</returns>
         public bool SetHighlighting(int id, bool active)
         {
-            if (!CheckInit())
+            if (!CheckInit(id))
                 return false;
             hPartsLists[id].highlightActive = active;
             return true;
@@ -181,7 +239,7 @@ namespace KSP_PartHighlighter
         /// <returns></returns>
         public bool AddPartToHighlight(int id, Part part)
         {
-            if (!CheckInit())
+            if (!CheckInit(id))
                 return false;
 
             if (hPartsLists.ContainsKey(id))
@@ -190,6 +248,8 @@ namespace KSP_PartHighlighter
                     return false;
                 hPartsLists[id].highlightParts.Add(part);
             }
+            if (hPartsLists[id].alwaysOn)
+                HighlightPartsOn(hPartsLists[id]);
             return true;
         }
 
@@ -201,7 +261,7 @@ namespace KSP_PartHighlighter
         /// <returns>True if successful</returns>
         public bool DisablePartHighlighting(int id, Part part)
         {
-            if (!CheckInit())
+            if (!CheckInit(id))
                 return false;
 
             if (hPartsLists[id].highlightParts.Contains(part))
@@ -226,12 +286,37 @@ namespace KSP_PartHighlighter
             return false;
         }
 
+        /// <summary>
+        /// Disable highlighting on a single part
+        /// </summary>
+        /// <param name="id">ID of highlight list</param>
+        /// <param name="part"></param>
+        /// <returns>True if successful</returns>
+        public bool RemovePartFromList(int id, Part part) => DisablePartHighlighting(id, part);
+        
+        /// <summary>
+        /// Remove all parts from specified list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool EmptyList(int id)
+        {
+            if (!CheckInit(id))
+                return false;
+            for (int i = hPartsLists[id].highlightParts.Count -1; i >= 0; i--)
+            {
+                if (!RemovePartFromList(id, hPartsLists[id].highlightParts[i]))
+                    return false;
+            }
+            return true;
+        }
+
         void FixedUpdate()
         {
             for (int cnt = hPartsLists.Count - 1; cnt >= 0; cnt--)
             {
                 var hp = hPartsLists[cnt];
-                if (HighLogic.LoadedScene == hp.loadedScene)
+                if (HighLogic.LoadedScene == hp.loadedScene && !hp.alwaysOn && !hp.pause)
                 {
                     if (Time.realtimeSinceStartup - hp.lastTimechange >= hp.interval)
                     {
@@ -254,8 +339,9 @@ namespace KSP_PartHighlighter
         /// <returns></returns>
         public bool UpdateHighlightColors(int id, Color newHighlightColor)
         {
-            if (!CheckInit())
+            if (!CheckInit(id))
                 return false;
+            Log.Error("UpdateHighlightColors, id: " + id);
             hPartsLists[id].highlightActive = true;
 
             hPartsLists[id].highlightC = newHighlightColor;

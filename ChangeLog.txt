@@ -36,3 +36,31 @@ ChangeLog
 
 0.0.3.2
 	Fixed names of version files (removed underscores)
+
+0.0.3.3 
+	KSP_PartHighlighter
+		Updated PartHighlighter to have an interval of <= 0 mean always on
+		Add extra checking to PartHighlighter to avoid exceptions
+		Made lists static in PartHighlighter to preserve lists when going between scenes & reverts
+		Added alwaysOn functionality
+		Added pause functionality
+		Added check to Startup to not reinitialize hPartsList and Log if they are already initialized
+		Updated error message from CheckInit
+		Added second method Checkinit which checks that the id exists
+		Added stack trace if error detected from CheckInit
+		Added SetFlashInterval
+		Added PauseHighlighting
+		Added Checkinit(id) to all methods which have an id passed in
+		Added EmptyList
+		Added RemovePartFromList
+		Increment version in KSPAssembly
+
+	KSP_Log
+		Added new instantator to KSP_Log to set the level when initializing
+		Set default logging level to ERROR
+		Removed unnecessary logging line in SetLevel
+		Added Debug method, pointing to Detail
+		Removed conditional attributions
+		Created example logging code
+		Created README with sample usage
+		Increment version in KSPAssembly
