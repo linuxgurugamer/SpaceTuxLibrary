@@ -135,7 +135,7 @@ namespace KSP_Log
         /// <returns>True if logable</returns>
         public bool IsLogable(LEVEL level)
         {
-            return level >= Log.level;
+            return level <= Log.level;
         }
 
         /// <summary>
@@ -220,12 +220,22 @@ namespace KSP_Log
         }
 
         /// <summary>
-        /// Logs exceptiopn
+        /// Logs exception
         /// </summary>
         /// <param name="exception"></param>
         public void Exception(Exception exception)
         {
             Error("exception caught: " + exception.GetType() + ": " + exception.Message);
+        }
+
+        /// <summary>
+        /// Log exception
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="exception"></param>
+        public void Exception(string name, Exception exception)
+        {
+            Error(name + " exception caught: " + exception.GetType() + ": " + exception.Message);
         }
 
     }

@@ -67,3 +67,7 @@ ChangeLog
 
 0.0.3.4
 	Fixed URL in ButtonManager.version file 
+
+0.0.3.5
+	Added additional Log.Exception with extra parameter
+	Fixed loglevel check 
