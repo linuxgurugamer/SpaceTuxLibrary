@@ -231,6 +231,26 @@ namespace KSP_PartHighlighter
             }
         }
 
+
+        /// <summary>
+        /// Return true if valid id and part is in the partlist
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="part"></param>
+        /// <returns></returns>
+        public bool HighlightListContains(int id, Part part)
+        {
+            if (!CheckInit(id))
+                return false;
+
+            if (hPartsLists.ContainsKey(id))
+            {
+                if (hPartsLists[id].highlightParts.Contains(part))
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Adds a part to to a HighlightList
         /// </summary>
