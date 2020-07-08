@@ -16,7 +16,8 @@ namespace KSP_PartHighlighter
         private static Log Log = new Log("KSP_PartHighlighter");
 
         private static PartHighlighter Instance = null;
-        int highlightCnt = 0;
+        private static Dictionary<int, HighlightParts> hPartsLists = null;
+        static int highlightCnt = 0;
 
         internal class HighlightParts
         {
@@ -35,7 +36,6 @@ namespace KSP_PartHighlighter
             internal List<Part> highlightParts;
         }
 
-        private static Dictionary<int, HighlightParts> hPartsLists = null;
 
         /// <summary>
         /// Creates a new PartHighlighter

@@ -75,3 +75,8 @@ ChangeLog
 0.0.3.6
 	KSP_PartHighlighter
 		Added method to check if a part is already in the list
+
+0.0.3.7
+	KSP_PartHighlighter
+		Thanks to forum user @sibiro for pointing this out:
+			Made highlightCnt a static to match the hPartsLists
