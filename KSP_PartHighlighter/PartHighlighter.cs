@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Highlighting;
 using KSP_Log;
@@ -231,7 +232,13 @@ namespace KSP_PartHighlighter
             }
         }
 
-
+        bool ListContainsPart(int id, Part part)
+        {
+            for (int i = hPartsLists[id].highlightParts.Count - 1; i >= 0; i--)
+                if (hPartsLists[id].highlightParts[i].persistentId == part.persistentId)
+                    return true;
+            return false;
+        }
         /// <summary>
         /// Return true if valid id and part is in the partlist
         /// </summary>
@@ -245,7 +252,7 @@ namespace KSP_PartHighlighter
 
             if (hPartsLists.ContainsKey(id))
             {
-                if (hPartsLists[id].highlightParts.Contains(part))
+                if (ListContainsPart(id, part))
                     return true;
             }
             return false;
@@ -264,12 +271,14 @@ namespace KSP_PartHighlighter
 
             if (hPartsLists.ContainsKey(id))
             {
-                if (hPartsLists[id].highlightParts.Contains(part))
+                if (ListContainsPart(id, part))
                     return false;
+                Log.Info("AddPartToHighlight, id: " + id + ",  part: " + part.persistentId + ", " + part.partInfo.title);
                 hPartsLists[id].highlightParts.Add(part);
+
+                if (hPartsLists[id].alwaysOn)
+                    HighlightPartsOn(hPartsLists[id]);
             }
-            if (hPartsLists[id].alwaysOn)
-                HighlightPartsOn(hPartsLists[id]);
             return true;
         }
 
@@ -283,8 +292,9 @@ namespace KSP_PartHighlighter
         {
             if (!CheckInit(id))
                 return false;
+            Log.Info("DisablePartHighlighting/RemovePartFromList, id: " + id + ",  part: " + part.persistentId + ", " + part.partInfo.title);
 
-            if (hPartsLists[id].highlightParts.Contains(part))
+            if (ListContainsPart(id, part))
             {
                 try
                 {

@@ -80,3 +80,7 @@ ChangeLog
 	KSP_PartHighlighter
 		Thanks to forum user @sibiro for pointing this out:
 			Made highlightCnt a static to match the hPartsLists
+
+0.0.3.8
+	KSP_PartHighlighter
+		Changed check for part in list from entire part to persistentId
