@@ -84,3 +84,12 @@ ChangeLog
 0.0.3.8
 	KSP_PartHighlighter
 		Changed check for part in list from entire part to persistentId
+
+0.0.3.9
+	KSP_Log
+		Added		  public void Error(Exception)
+		Added         public  void Info(object messageOrFormat, params object[] args)
+		Added         public  void Error(object messageOrFormat, params object[] args)
+		Added         public  void Warn(object messageOrFormat, params object[] args)
+	SpaceTuxUtility
+		Added KSPAssembly to AssemblyInfo.cs

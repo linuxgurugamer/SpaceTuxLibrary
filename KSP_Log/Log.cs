@@ -182,6 +182,37 @@ namespace KSP_Log
         }
 
         /// <summary>
+        /// Logs at an info level, this variant allows message formatting
+        /// </summary>
+        /// <param name="messageOrFormat"></param>
+        /// <param name="args"></param>
+        public  void Info(object messageOrFormat, params object[] args)
+        {
+            Info(GetLogMessage(messageOrFormat, args));
+        }
+
+        /// <summary>
+        /// Logs at an error level, this variant allows message formatting
+        /// </summary>
+        /// <param name="messageOrFormat"></param>
+        /// <param name="args"></param>
+        public void Error(object messageOrFormat, params object[] args)
+        {
+            Error(GetLogMessage(messageOrFormat, args));
+        }
+
+        /// <summary>
+        /// Logs at an warn level, this variant allows message formatting
+        /// </summary>
+        /// <param name="messageOrFormat"></param>
+        /// <param name="args"></param>
+        public void Warn(object messageOrFormat, params object[] args)
+        {
+            Warn(GetLogMessage(messageOrFormat, args));
+        }
+
+
+        /// <summary>
         /// Logs at any level.  If not compiled in DEBUG mode, this is compiled away by the compiler and does not log anything
         /// </summary>
         /// <param name="msg"></param>
@@ -228,6 +259,8 @@ namespace KSP_Log
             Error("exception caught: " + exception.GetType() + ": " + exception.Message);
         }
 
+        public void Error(Exception exception) => Exception(exception);
+
         /// <summary>
         /// Log exception
         /// </summary>
@@ -236,6 +269,16 @@ namespace KSP_Log
         public void Exception(string name, Exception exception)
         {
             Error(name + " exception caught: " + exception.GetType() + ": " + exception.Message);
+        }
+
+        private static string GetLogMessage(object messageOrFormat, object[] args)
+        {
+            string message = messageOrFormat.ToString();
+            if (args != null && args.Length > 0)
+            {
+                message = String.Format(message, args);
+            }
+            return String.Format("[BetterLoadSaveGame] {0}", message);
         }
 
     }
