@@ -371,7 +371,7 @@ namespace KSP_PartHighlighter
         {
             if (!CheckInit(id))
                 return false;
-            Log.Error("UpdateHighlightColors, id: " + id);
+            Log.Info("UpdateHighlightColors, id: " + id);
             hPartsLists[id].highlightActive = true;
 
             hPartsLists[id].highlightC = newHighlightColor;

@@ -93,3 +93,7 @@ ChangeLog
 		Added         public  void Warn(object messageOrFormat, params object[] args)
 	SpaceTuxUtility
 		Added KSPAssembly to AssemblyInfo.cs
+
+0.0.3.10
+	KSP_PartHighlighter
+		Removed some log spam from KSP_PartHighlighter
