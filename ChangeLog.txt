@@ -97,3 +97,7 @@ ChangeLog
 0.0.3.10
 	KSP_PartHighlighter
 		Removed some log spam from KSP_PartHighlighter
+
+0.0.3.11
+	KSP_Log
+		Changed static def of loglevel to nonstatic

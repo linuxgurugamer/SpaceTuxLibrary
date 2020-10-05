@@ -93,7 +93,7 @@ namespace KSP_Log
         /// <summary>
         /// Current log level
         /// </summary>
-        public static LEVEL level = LEVEL.ERROR;
+        public LEVEL level = LEVEL.ERROR;
 
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace KSP_Log
         /// <param name="level"></param>
         public void SetLevel(LEVEL level)
         {
-            Log.level = level;
+            this.level = level;
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace KSP_Log
 
         private bool IsLevel(LEVEL level)
         {
-            return Log.level == level;
+            return this.level == level;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace KSP_Log
         /// <returns>True if logable</returns>
         public bool IsLogable(LEVEL level)
         {
-            return level <= Log.level;
+            return level <= this.level;
         }
 
         /// <summary>
