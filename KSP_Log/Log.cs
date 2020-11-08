@@ -127,7 +127,7 @@ namespace KSP_Log
         void WriteStream(LEVEL level, string str)
         {
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            writer.Write(level.ToString() +":" + timestamp + " " + str + "\n");
+            writer.Write(level.ToString() +":" + timestamp + "  " + str + "\n");
             writer.Flush();
         }
         /// <summary>
