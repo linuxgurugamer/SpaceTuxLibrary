@@ -41,9 +41,6 @@
     <Reference Include="ClickThroughBlocker">
       <HintPath>R:\KSP_1.8.1_dev\GameData\000_ClickThroughBlocker\Plugins\ClickThroughBlocker.dll</HintPath>
     </Reference>
-    <Reference Include="KSP_Log">
-      <HintPath>R:\KSP_1.10.1_dev\GameData\SpaceTuxLibrary\Plugins\KSP_Log.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="ToolbarControl">
       <HintPath>R:\KSP_1.8.1_dev\GameData\001_ToolbarControl\Plugins\ToolbarControl.dll</HintPath>
@@ -72,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KSP_Log\KSP_Log.csproj">
+      <Project>{d4353784-80e0-4ec2-a13e-abbd09ea1a78}</Project>
+      <Name>KSP_Log</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
