@@ -107,14 +107,14 @@ namespace KSP_Log
                     try
                     {
                         File.Delete(file);
-                    }
+                    } catch { }
             }
                 foreach (string dir in Directory.GetDirectories(logsDirPath))
                 {
                     try
                     {
                         Directory.Delete(dir, true);
-                    }
+                    } catch { }
             }
                 FirstDelete = true;
             }
