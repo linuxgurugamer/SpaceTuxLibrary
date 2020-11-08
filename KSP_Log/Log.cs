@@ -56,7 +56,7 @@ namespace KSP_Log
     /// </summary>
     public class Log
     {
-
+        static bool FirstDelete = false;
         internal static readonly string normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
         internal static readonly string logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
         //internal static readonly string logPath = Path.Combine(logsDirPath, "ModuleManager.log");
@@ -100,13 +100,23 @@ namespace KSP_Log
             SetLevel(level);
 
             Directory.CreateDirectory(logsDirPath);
-            foreach (string file in Directory.GetFiles(logsDirPath))
+            if (!FirstDelete)
             {
-                File.Delete(file);
+                foreach (string file in Directory.GetFiles(logsDirPath))
+                {
+                    try
+                    {
+                        File.Delete(file);
+                    }
             }
-            foreach (string dir in Directory.GetDirectories(logsDirPath))
-            {
-                Directory.Delete(dir, true);
+                foreach (string dir in Directory.GetDirectories(logsDirPath))
+                {
+                    try
+                    {
+                        Directory.Delete(dir, true);
+                    }
+            }
+                FirstDelete = true;
             }
 
             logPath = Path.Combine(logsDirPath, title + ".log");
