@@ -39,6 +39,15 @@
 ///         Log.Info("Start");
 ///         
 using System;
+using System.IO;
+
+
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Reflection;
 
 namespace KSP_Log
 {
@@ -47,6 +56,16 @@ namespace KSP_Log
     /// </summary>
     public class Log
     {
+
+        internal static readonly string normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
+        internal static readonly string logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
+        //internal static readonly string logPath = Path.Combine(logsDirPath, "ModuleManager.log");
+        internal string logPath = "";
+
+        FileStream stream;
+        StreamWriter writer;
+
+
         /// <summary>
         /// Log level
         /// </summary>
@@ -79,8 +98,28 @@ namespace KSP_Log
         {
             setTitle(title);
             SetLevel(level);
+
+            Directory.CreateDirectory(logsDirPath);
+            foreach (string file in Directory.GetFiles(logsDirPath))
+            {
+                File.Delete(file);
+            }
+            foreach (string dir in Directory.GetDirectories(logsDirPath))
+            {
+                Directory.Delete(dir, true);
+            }
+
+            logPath = Path.Combine(logsDirPath, title + ".log");
+            stream = new FileStream(logPath, FileMode.Create);
+            writer = new StreamWriter(stream);
         }
 
+        void WriteStream(LEVEL level, string str)
+        {
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            writer.Write(PREFIX +":"+level.ToString() + timestamp + " " + str + "\n");
+            writer.Flush();
+        }
         /// <summary>
         /// Sets the title
         /// </summary>
@@ -147,6 +186,7 @@ namespace KSP_Log
             if (IsLogable(LEVEL.TRACE))
             {
                 UnityEngine.Debug.Log(PREFIX + msg);
+                WriteStream(LEVEL.TRACE, msg);
             }
         }
 
@@ -159,6 +199,7 @@ namespace KSP_Log
             if (IsLogable(LEVEL.DETAIL))
             {
                 UnityEngine.Debug.Log(PREFIX + msg);
+                WriteStream(LEVEL.DETAIL, msg);
             }
         }
 
@@ -178,6 +219,7 @@ namespace KSP_Log
             if (IsLogable(LEVEL.INFO))
             {
                 UnityEngine.Debug.Log(PREFIX + msg);
+                WriteStream(LEVEL.INFO, msg);
             }
         }
 
@@ -186,7 +228,7 @@ namespace KSP_Log
         /// </summary>
         /// <param name="messageOrFormat"></param>
         /// <param name="args"></param>
-        public  void Info(object messageOrFormat, params object[] args)
+        public void Info(object messageOrFormat, params object[] args)
         {
             Info(GetLogMessage(messageOrFormat, args));
         }
@@ -223,6 +265,7 @@ namespace KSP_Log
 
             {
                 UnityEngine.Debug.LogWarning(PREFIX + "TEST:" + msg);
+                WriteStream(LEVEL.INFO, msg);
             }
         }
 
@@ -235,6 +278,7 @@ namespace KSP_Log
             if (IsLogable(LEVEL.WARNING))
             {
                 UnityEngine.Debug.LogWarning(PREFIX + msg);
+                WriteStream(LEVEL.WARNING, msg);
             }
         }
 
@@ -247,6 +291,7 @@ namespace KSP_Log
             if (IsLogable(LEVEL.ERROR))
             {
                 UnityEngine.Debug.LogError(PREFIX + msg);
+                WriteStream(LEVEL.ERROR, msg);
             }
         }
 
