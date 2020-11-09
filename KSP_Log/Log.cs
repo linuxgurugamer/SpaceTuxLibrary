@@ -41,14 +41,6 @@
 using System;
 using System.IO;
 
-
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Reflection;
-
 namespace KSP_Log
 {
     /// <summary>
@@ -59,7 +51,6 @@ namespace KSP_Log
         static bool FirstDelete = false;
         internal static readonly string normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
         internal static readonly string logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
-        //internal static readonly string logPath = Path.Combine(logsDirPath, "ModuleManager.log");
         internal string logPath = "";
 
         FileStream stream;
@@ -96,8 +87,6 @@ namespace KSP_Log
         /// <param name="level"></param>
         public Log(string title, LEVEL level)
         {
-            setTitle(title);
-            SetLevel(level);
 
             Directory.CreateDirectory(logsDirPath);
             if (!FirstDelete)
@@ -107,29 +96,36 @@ namespace KSP_Log
                     try
                     {
                         File.Delete(file);
-                    } catch { }
-            }
+                    }
+                    catch { }
+                }
                 foreach (string dir in Directory.GetDirectories(logsDirPath))
                 {
                     try
                     {
                         Directory.Delete(dir, true);
-                    } catch { }
-            }
+                    }
+                    catch { }
+                }
                 FirstDelete = true;
             }
 
-            logPath = Path.Combine(logsDirPath, title + ".log");
-            stream = new FileStream(logPath, FileMode.Create);
-            writer = new StreamWriter(stream);
+            setTitle(title);
+            SetLevel(level);
+
         }
 
         void WriteStream(LEVEL level, string str)
         {
+            if (writer == null)
+            {
+                setTitle("unnamed");
+            }
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            writer.Write(level.ToString() +":" + timestamp + "  " + str + "\n");
+            writer.Write(level.ToString() + ":" + timestamp + "  " + str + "\n");
             writer.Flush();
         }
+
         /// <summary>
         /// Sets the title
         /// </summary>
@@ -137,6 +133,11 @@ namespace KSP_Log
         public void setTitle(string title)
         {
             PREFIX = title + ": ";
+            if (writer != null)
+                writer.Close();
+            logPath = Path.Combine(logsDirPath, title + ".log");
+            stream = new FileStream(logPath, FileMode.Create);
+            writer = new StreamWriter(stream);
         }
 
         /// <summary>
