@@ -273,7 +273,6 @@ namespace KSP_PartHighlighter
             {
                 if (ListContainsPart(id, part))
                     return false;
-                Log.Info("AddPartToHighlight, id: " + id + ",  part: " + part.persistentId + ", " + part.partInfo.title);
                 hPartsLists[id].highlightParts.Add(part);
 
                 if (hPartsLists[id].alwaysOn)
@@ -292,7 +291,6 @@ namespace KSP_PartHighlighter
         {
             if (!CheckInit(id))
                 return false;
-            Log.Info("DisablePartHighlighting/RemovePartFromList, id: " + id + ",  part: " + part.persistentId + ", " + part.partInfo.title);
 
             if (ListContainsPart(id, part))
             {
@@ -371,7 +369,6 @@ namespace KSP_PartHighlighter
         {
             if (!CheckInit(id))
                 return false;
-            Log.Info("UpdateHighlightColors, id: " + id);
             hPartsLists[id].highlightActive = true;
 
             hPartsLists[id].highlightC = newHighlightColor;

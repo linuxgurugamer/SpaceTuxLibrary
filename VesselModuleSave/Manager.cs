@@ -149,13 +149,11 @@ namespace VesselModuleSaveFramework
 
         private void VesselDestroyTrigger(Vessel vsl)
         {
-            Debug.Log("GameEvent.VesselDestroyTrigger");
             VesselModuleStaticData.KillVessel(vsl.id.ToString());
         }
 
         private void VesselRecoverTrigger(ProtoVessel vsl, bool b)
         {
-            Debug.Log("GameEvent.VesselRecovertrigger");
             VesselModuleStaticData.KillVessel(vsl.vesselID.ToString());
         }
 
@@ -163,7 +161,6 @@ namespace VesselModuleSaveFramework
 
         private void GameSaveTrigger(ConfigNode node) //called on GameSave event, refresh all data from loaded vessels and save to .sfs
         {
-            Debug.Log("GameEvent.GameSaveTrigger");
             //need to call save routines here
             if (node.HasNode("VMSNode")) //note that we do not load data at this point, our data storage is static so we know what's in the save file is old, invalid data
             {
@@ -173,7 +170,6 @@ namespace VesselModuleSaveFramework
         }
         private void GameLoadTrigger(ConfigNode node) //load data from .sfs file and then refresh any already loaded vessels, may be no vessels loaded depending on race conditions
         {
-            Debug.Log("GameEvent.GameLoadTrigger");
             VesselModuleStaticData.ClearData();
             ConfigNode vmNode = new ConfigNode("VMSNode");
             if (node.HasNode("VMSNode"))

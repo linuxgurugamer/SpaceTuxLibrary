@@ -103,5 +103,9 @@ ChangeLog
 		Changed static def of loglevel to nonstatic
 
 0.0.4
-	KSP_Log 0.1.1
+	KSP_Log 0.1.1.1
 		Updated KSP_Log to write logging info to files in Logs/SpaceTux/*
+	PartHighlighter 0.1.0.8
+		Removed log spam
+	VesselModuleSave 0.0.1.1
+		Removed log spam

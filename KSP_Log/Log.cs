@@ -40,6 +40,7 @@
 ///         
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace KSP_Log
 {
@@ -56,7 +57,7 @@ namespace KSP_Log
         FileStream stream;
         StreamWriter writer;
 
-
+        Dictionary<string, StreamWriter> allWriters = new Dictionary<string, StreamWriter>();
         /// <summary>
         /// Log level
         /// </summary>
@@ -87,10 +88,14 @@ namespace KSP_Log
         /// <param name="level"></param>
         public Log(string title, LEVEL level)
         {
-
+            // Makes sure the directory for the logs exists
+            // The delete all existing logs and subdirs the first time this is called
+            // OK to ignore errors if they don't exist
+            //
             Directory.CreateDirectory(logsDirPath);
             if (!FirstDelete)
             {
+                FirstDelete = true;
                 foreach (string file in Directory.GetFiles(logsDirPath))
                 {
                     try
@@ -107,7 +112,6 @@ namespace KSP_Log
                     }
                     catch { }
                 }
-                FirstDelete = true;
             }
 
             setTitle(title);
@@ -119,11 +123,14 @@ namespace KSP_Log
         {
             if (writer == null)
             {
-                setTitle("unnamed");
+                setTitle(null); // this will set title to a default value and open the writer
             }
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-            writer.Write(level.ToString() + ":" + timestamp + "  " + str + "\n");
-            writer.Flush();
+            if (writer != null)
+            {
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                writer.Write(level.ToString() + ":" + timestamp + "  " + str + "\n");
+                writer.Flush();
+            }
         }
 
         /// <summary>
@@ -132,12 +139,37 @@ namespace KSP_Log
         /// <param name="title">Title to be displayed in the log file as the prefix to a line</param>
         public void setTitle(string title)
         {
+            if (title == "" || title == null)
+                title = "Default";
             PREFIX = title + ": ";
             if (writer != null)
                 writer.Close();
             logPath = Path.Combine(logsDirPath, title + ".log");
-            stream = new FileStream(logPath, FileMode.Create);
-            writer = new StreamWriter(stream);
+            if (allWriters.ContainsKey(logPath))
+            {
+                writer = allWriters[logPath];
+            }
+            else
+            {
+                try
+                {
+                    stream = new FileStream(logPath, FileMode.Create);
+                    if (stream != null)
+                    {
+                        writer = new StreamWriter(stream);
+                        allWriters.Add(logPath, writer);
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.Log("UNKNOWN Error creating filestream [" + logPath + "]");
+                        writer = null;
+                    }
+                } catch (Exception ex)
+                {
+                    UnityEngine.Debug.Log("FATAL Error creating log file [" + logPath + "]: " + ex.Message);
+                    writer = null;
+                }
+            }
         }
 
         /// <summary>
