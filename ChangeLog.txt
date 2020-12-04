@@ -109,3 +109,7 @@ ChangeLog
 		Removed log spam
 	VesselModuleSave 0.0.1.1
 		Removed log spam
+
+0.0.4.1
+	KSP_Log 0.1.1.2
+		Improved code to make sure directory path is there

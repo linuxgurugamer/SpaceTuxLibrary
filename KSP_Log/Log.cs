@@ -88,6 +88,14 @@ namespace KSP_Log
         /// <param name="level"></param>
         public Log(string title, LEVEL level)
         {
+            VerifyLogPath();
+
+            setTitle(title);
+            SetLevel(level);
+        }
+
+        void VerifyLogPath()
+        {
             // Makes sure the directory for the logs exists
             // The delete all existing logs and subdirs the first time this is called
             // OK to ignore errors if they don't exist
@@ -114,11 +122,7 @@ namespace KSP_Log
                 }
             }
 
-            setTitle(title);
-            SetLevel(level);
-
         }
-
         void WriteStream(LEVEL level, string str)
         {
             if (writer == null)
@@ -144,6 +148,7 @@ namespace KSP_Log
             PREFIX = title + ": ";
             if (writer != null)
                 writer.Close();
+            VerifyLogPath();
             logPath = Path.Combine(logsDirPath, title + ".log");
             if (allWriters.ContainsKey(logPath))
             {
