@@ -22,4 +22,4 @@ xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
 
 echo Deployed
 
-pause
+rem pause

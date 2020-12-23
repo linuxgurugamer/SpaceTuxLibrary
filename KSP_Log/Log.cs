@@ -57,7 +57,7 @@ namespace KSP_Log
         FileStream stream;
         StreamWriter writer;
 
-        Dictionary<string, StreamWriter> allWriters = new Dictionary<string, StreamWriter>();
+        static Dictionary<string, StreamWriter> allWriters = new Dictionary<string, StreamWriter>();
         /// <summary>
         /// Log level
         /// </summary>

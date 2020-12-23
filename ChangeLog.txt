@@ -113,3 +113,9 @@ ChangeLog
 0.0.4.1
 	KSP_Log 0.1.1.2
 		Improved code to make sure directory path is there
+
+0.0.5
+	Utilities 0.0.2
+		Added SafeLoad library for ConfigNodes
+	KSP_Log 0.1.1.3
+		Fixed fatal error in KSP_Log, was missing a static

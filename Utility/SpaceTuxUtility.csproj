@@ -49,6 +49,7 @@
     <Compile Include="HasMod.cs" />
     <Compile Include="InstallChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SafeLoad.cs" />
     <Compile Include="VerifyAssemblyVersion.cs" />
     <Compile Include="WindowHelper.cs" />
   </ItemGroup>
