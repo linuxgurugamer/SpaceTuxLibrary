@@ -1,4 +1,5 @@
 
+
 @echo off
 
 rem H is the destination game folder
@@ -8,18 +9,19 @@ rem VERSIONFILE is the name of the version file, usually the same as GAMEDATA,
 rem    but not always
 
 set H=%KSPDIR%
-
 set GAMEDIR=SpaceTuxLibrary
 set GAMEDATA="GameData"
 set VERSIONFILE=%GAMEDIR%.version
-set VERSIONFILE2=%3.version
+
+set DP0=r:\dp0\kspdev
 
 copy /Y "%1%2" "%GAMEDATA%\%GAMEDIR%\Plugins"
+copy /Y "%1%3".pdb "%GAMEDATA%\%GAMEDIR%\Plugins"
+
 copy /Y %VERSIONFILE% %GAMEDATA%\%GAMEDIR%
-copy /Y %VERSIONFILE2% %GAMEDATA%\%GAMEDIR%
 
 xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
+xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%DP0%\GameData\%GAMEDIR%"
 
 echo Deployed
-
-rem pause
+pause

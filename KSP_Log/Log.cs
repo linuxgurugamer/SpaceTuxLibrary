@@ -41,17 +41,32 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace KSP_Log
 {
+    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    internal class Startup : MonoBehaviour
+    {
+        internal static string normalizedRootPath;
+        internal static  string logsDirPath;
+
+        private void Start()
+        {
+            normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
+            logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
+        }
+    }
     /// <summary>
     /// Logging class
     /// </summary>
-    public class Log
+        public class Log
     {
         static bool FirstDelete = false;
-        internal static readonly string normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
-        internal static readonly string logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
+        //internal static readonly string normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
+        // internal static readonly string logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
+
         internal string logPath = "";
 
         FileStream stream;
@@ -100,11 +115,11 @@ namespace KSP_Log
             // The delete all existing logs and subdirs the first time this is called
             // OK to ignore errors if they don't exist
             //
-            Directory.CreateDirectory(logsDirPath);
+            Directory.CreateDirectory(Startup.logsDirPath);
             if (!FirstDelete)
             {
                 FirstDelete = true;
-                foreach (string file in Directory.GetFiles(logsDirPath))
+                foreach (string file in Directory.GetFiles(Startup.logsDirPath))
                 {
                     try
                     {
@@ -112,7 +127,7 @@ namespace KSP_Log
                     }
                     catch { }
                 }
-                foreach (string dir in Directory.GetDirectories(logsDirPath))
+                foreach (string dir in Directory.GetDirectories(Startup.logsDirPath))
                 {
                     try
                     {
@@ -149,7 +164,7 @@ namespace KSP_Log
             if (writer != null)
                 writer.Close();
             VerifyLogPath();
-            logPath = Path.Combine(logsDirPath, title + ".log");
+            logPath = Path.Combine(Startup.logsDirPath, title + ".log");
             if (allWriters.ContainsKey(logPath))
             {
                 writer = allWriters[logPath];
