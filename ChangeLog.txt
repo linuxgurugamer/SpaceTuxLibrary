@@ -124,3 +124,7 @@ ChangeLog
 	KSP_Log 0.1.1.4
 		Fixed invalid initialization of vars
 		Changed initialization from a Start() to an Awake()
+
+0.0.5.2
+	KSP_Log 0.1.1.5
+		Fixed bad initialization in KSP_Log which was causing huge issues in KSP

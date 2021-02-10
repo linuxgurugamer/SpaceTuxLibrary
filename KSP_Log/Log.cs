@@ -42,22 +42,11 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
 
 
 namespace KSP_Log
 {
-    [KSPAddon(KSPAddon.Startup.Instantly, true)]
-    internal class Startup : MonoBehaviour
-    {
-        internal static string normalizedRootPath;
-        internal static string logsDirPath;
-
-        private void Awake()
-        {
-            normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
-            logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
-        }
-    }
     /// <summary>
     /// Logging class
     /// </summary>
@@ -86,6 +75,9 @@ namespace KSP_Log
             TRACE = 5
         };
         string PREFIX = "";
+
+        internal static string normalizedRootPath = "";
+        internal static string logsDirPath = "";
 
         /// <summary>
         /// Used to initialize the class. 
@@ -117,11 +109,25 @@ namespace KSP_Log
             // OK to ignore errors if they don't exist
             //
 
-            Directory.CreateDirectory(Startup.logsDirPath);
+            if (normalizedRootPath == "")
+            {
+                normalizedRootPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                if (normalizedRootPath != null)
+                {
+                    logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
+                }
+                else
+                {
+                    UnityEngine.Debug.Log("Startup.normalizedrootPath is null");
+                    return;
+                }
+            }
+            Directory.CreateDirectory(logsDirPath);
             if (!FirstDelete)
             {
                 FirstDelete = true;
-                foreach (string file in Directory.GetFiles(Startup.logsDirPath))
+                foreach (string file in Directory.GetFiles(logsDirPath))
                 {
                     try
                     {
@@ -129,7 +135,7 @@ namespace KSP_Log
                     }
                     catch { }
                 }
-                foreach (string dir in Directory.GetDirectories(Startup.logsDirPath))
+                foreach (string dir in Directory.GetDirectories(logsDirPath))
                 {
                     try
                     {
@@ -166,7 +172,7 @@ namespace KSP_Log
             if (writer != null)
                 writer.Close();
             VerifyLogPath();
-            logPath = Path.Combine(Startup.logsDirPath, title + ".log");
+            logPath = Path.Combine(logsDirPath, title + ".log");
             if (allWriters.ContainsKey(logPath))
             {
                 writer = allWriters[logPath];
