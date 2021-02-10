@@ -50,9 +50,9 @@ namespace KSP_Log
     internal class Startup : MonoBehaviour
     {
         internal static string normalizedRootPath;
-        internal static  string logsDirPath;
+        internal static string logsDirPath;
 
-        private void Start()
+        private void Awake()
         {
             normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
             logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
@@ -61,7 +61,7 @@ namespace KSP_Log
     /// <summary>
     /// Logging class
     /// </summary>
-        public class Log
+    public class Log
     {
         static bool FirstDelete = false;
         //internal static readonly string normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
@@ -93,6 +93,7 @@ namespace KSP_Log
         /// <param name="title">Title to be displayed in the log file as the prefix to a line</param>
         public Log(string title)
         {
+            VerifyLogPath();
             setTitle(title);
         }
 
@@ -115,6 +116,7 @@ namespace KSP_Log
             // The delete all existing logs and subdirs the first time this is called
             // OK to ignore errors if they don't exist
             //
+
             Directory.CreateDirectory(Startup.logsDirPath);
             if (!FirstDelete)
             {
@@ -184,7 +186,8 @@ namespace KSP_Log
                         UnityEngine.Debug.Log("UNKNOWN Error creating filestream [" + logPath + "]");
                         writer = null;
                     }
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     UnityEngine.Debug.Log("FATAL Error creating log file [" + logPath + "]: " + ex.Message);
                     writer = null;

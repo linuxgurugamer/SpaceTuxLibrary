@@ -123,3 +123,4 @@ ChangeLog
 0.0.5.1
 	KSP_Log 0.1.1.4
 		Fixed invalid initialization of vars
+		Changed initialization from a Start() to an Awake()
