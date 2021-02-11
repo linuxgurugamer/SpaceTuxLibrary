@@ -33,9 +33,9 @@
 # 2:PROJNAME, PROJFILE, VERSIONFILE, PLUGINSFOLDER
 2:KSP_ColorPicker,KSP_ColorPicker/KSP_ColorPicker.csproj,KSPColorPicker.version,GameData/SpaceTuxLibrary/Plugins
 2:KSP_PartHighlighter,KSP_PartHighlighter/KSP_PartHighlighter.csproj,KSPPartHighlighter.version,GameData/SpaceTuxLibrary/Plugins
+2:SpaceTuxUtility,Utility/SpaceTuxUtility.csproj,SpaceTuxUtility.version,GameData/SpaceTuxLibrary/Plugins
 2:KSP_Log,KSP_Log/KSP_Log.csproj,KSPLog.version,GameData/SpaceTuxLibrary/Plugins
 2:ButtonManager,ButtonManager/ButtonManager.csproj,ButtonManager.version,GameData/SpaceTuxLibrary/Plugins
-2:SpaceTuxUtility,Utility/SpaceTuxUtility.csproj,SpaceTuxUtility.version,GameData/SpaceTuxLibrary/Plugins
 2:VesselModuleSave,VesselModuleSave/VesselModuleSave.csproj,VesselModuleSave.version,GameData/SpaceTuxLibrary/Plugins
 
 # 3:SOURCEFILE, DESTDIR
