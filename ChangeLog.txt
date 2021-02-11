@@ -128,3 +128,9 @@ ChangeLog
 0.0.5.2
 	KSP_Log 0.1.1.5
 		Fixed bad initialization in KSP_Log which was causing huge issues in KSP
+
+0.0.6 (unreleased)
+	SpaceTuxUtility 0.0.3
+		Added ApplicationRootPath, which is safe to call anytime
+	KSP_Log 0.1.1.6
+		Changed initialization to use the ApplicationRootPath class from SpaceTuxUtility

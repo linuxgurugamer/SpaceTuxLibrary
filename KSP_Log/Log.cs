@@ -43,7 +43,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
-
+using SpaceTuxUtility;
 
 namespace KSP_Log
 {
@@ -111,8 +111,8 @@ namespace KSP_Log
 
             if (normalizedRootPath == "")
             {
-                normalizedRootPath = AppDomain.CurrentDomain.BaseDirectory;
-
+                //normalizedRootPath = AppDomain.CurrentDomain.BaseDirectory;
+                normalizedRootPath = SpaceTuxUtility.AppRootPath.Path;
                 if (normalizedRootPath != null)
                 {
                     logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
