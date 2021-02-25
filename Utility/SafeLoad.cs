@@ -100,5 +100,18 @@ namespace SpaceTuxUtility
             try { return ConfigNode.ParseVector3(node.GetValue(value)); }
             catch { return oldvalue; }
         }
+
+        public static Color SafeLoad(this ConfigNode node, string value, Color oldvalue)
+        {
+            if (!node.HasValue(value))
+            {
+                //Log.Info("SafeLoad bool, node missing value: " + value + ", oldvalue: " + oldvalue);
+                return oldvalue;
+            }
+
+            try { return ConfigNode.ParseColor(node.GetValue(value)); }
+            catch { return oldvalue; }
+        }
+
     }
 }
