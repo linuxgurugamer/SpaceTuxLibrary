@@ -113,5 +113,31 @@ namespace SpaceTuxUtility
             catch { return oldvalue; }
         }
 
+        public static KeyCode SafeLoad(this ConfigNode node, string value, KeyCode oldvalue)
+        {
+            if (!node.HasValue(value))
+            {
+                //Log.Info("SafeLoad string, node missing value: " + value + ", oldvalue: " + oldvalue);
+                return oldvalue;
+            }
+            tryParseKeyCode(node.GetValue(value), oldvalue, out KeyCode kc);
+            return kc;
+        }
+
+        private static bool tryParseKeyCode(string value, KeyCode defaultValue, out KeyCode result)
+        {
+            try
+            {
+                result = (KeyCode)System.Enum.Parse(typeof(KeyCode), value, true);
+                return true;
+            }
+            catch
+            {
+                result = defaultValue;
+                return false;
+            }
+        }
+
+
     }
 }

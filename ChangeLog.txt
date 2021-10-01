@@ -147,3 +147,13 @@ ChangeLog
 	VesselModuleSave 0.0.1.2
 		Added AssemblyFileVersion
 		Updated version file for 1.12
+
+0.0.8
+	Note: All version numbers were updated to make it easier to manage release version when needed by KSPAssemblyDependency in mods.  
+		This was needed to support the AssemblyVersion.tt which has been updated to use the .version file to make a KSPAssembly statement on the fly.  
+	Added AssemblyFileVersion to PartHighlighter, 1.1.0.10
+	SpaceTuxUtility, added SafeLoad for KeyCodes, 1.0.1.0
+	Button Manager version update to 1.0.1.1 
+	ColorPicker version update to 1.1.0.4
+	KSP_Log version updated to 1.2.0.0
+	VesselModuleSave version updated to 1.0.1.2

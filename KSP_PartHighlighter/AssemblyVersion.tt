@@ -98,3 +98,5 @@
  using System.Reflection;
 
  [assembly: AssemblyVersion("<#= major #>.<#= minor #>.<#= patch #>.<#= build #>")]
+ [assembly: AssemblyFileVersion("<#= major #>.<#= minor #>.<#= patch #>.<#= build #>")]
+ [assembly: KSPAssembly("KSP_PartHighlighter", <#= major #>, <#= minor #>, <#= patch #>)]
