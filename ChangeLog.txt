@@ -160,3 +160,6 @@ ChangeLog
 
 0.0.8.1
 	Fixed internal name for KSP_Log
+
+0.0.8.2
+	Fixed internal names for KSP_ColorPicker and KSP_PartHighlighter
