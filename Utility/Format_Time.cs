@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using UnityEngine;
 
 namespace SpaceTuxUtility
 {
@@ -48,10 +49,10 @@ namespace SpaceTuxUtility
             if (str.Length > 0 || hours > 0 || (str.Length > 0 && hours == 0 && !hideZeroValues))
                 str.Append(hours.ToString("00") + (expanded ? "h " : ":"));
 
-            if (str.Length > 0 || (str.Length == 0 && minutes == 0 && !hideZeroValues))
+            if (str.Length > 0 || minutes > 0 || (str.Length == 0 && minutes == 0 && !hideZeroValues))
                 str.Append(minutes.ToString("00") + (expanded ? "m " : ":"));
 
-            if (years == 0 && days == 0 && hours == 0)
+            if (years == 0 && days == 0 && hours == 0 && minutes== 0)
             {
                 string secondsString;
                 if (numDecimals > 0)
@@ -71,6 +72,7 @@ namespace SpaceTuxUtility
             else
                 str.Append(Math.Floor(seconds).ToString("00"));
             str.Append(expanded ? "s" : "");
+
             return str.ToString();
         }
     }
