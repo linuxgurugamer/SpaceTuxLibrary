@@ -166,3 +166,6 @@ ChangeLog
 
 0.0.8.3
 	Fixed FormatTime (was not showing minutes if no hours or days were begin shown)
+
+0.0.8.4
+	Restored accidently removed class HasMod
