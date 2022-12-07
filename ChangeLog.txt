@@ -169,3 +169,7 @@ ChangeLog
 
 0.0.8.4
 	Restored accidently removed class HasMod
+
+0.0.8.5
+	Fixed path for loading files (broken by new launcher)
+		ColorPicker 1.1.0.5

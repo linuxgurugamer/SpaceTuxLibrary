@@ -67,7 +67,7 @@ namespace KSPColorPicker
         private GUIStyle saturationTextureStyle;
         private GUIStyle styleTextureStyle;
         private string texturePath = "ColorPicker-Texture";
-        private const string TEXTURES = "GameData/SpaceTuxLibrary/PluginData/Images";
+        private static string TEXTURES { get { return SpaceTuxUtility.AppRootPath.Path + "/GameData/SpaceTuxLibrary/PluginData/Images"; } }
         double lastTimePinged = 0;
 
         Settings settings = new Settings();

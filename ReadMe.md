@@ -10,6 +10,7 @@ KSP_ColorPicker		Provides a color picker for use by mods. Comes with 5 different
 
 KSP_PartHighlighter	Provides a way to add highlighting to parts on vessels
 
+ButtonManager		Manages multiple mods remapping the same button
 
 Usage
 ======
@@ -70,3 +71,14 @@ KSP_PartHighlighter
 	  public bool DisablePartHighlighting(int id, Part part)
 	  public bool UpdateHighlightColors(int id, Color newHighlightColor)
 
+ButtonManager
+        public static int AddListener(Button button, UnityAction delegateMethod, string modName, string modDisplayName, int priority = 5);
+        public static void InitializeListener(Button button, UnityAction gameDelegateMethod, string modName = null);
+        public static void InvokeNextDelegate(int currentDelegateId, string modName);
+
+
+		InitializeListener    	Initializes the mod to work with the specified button. 
+								The delegate should be the same as what the default is, it will have the lowest priority
+		AddListener    			Adds a delegate to a button with a specified priority.  Returns a listenerId, used below
+		InvokeNextDelegate  	Tells the mod to call the next delegate on the list
+		

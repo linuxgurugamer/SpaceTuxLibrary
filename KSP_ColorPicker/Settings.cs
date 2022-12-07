@@ -11,7 +11,7 @@ namespace KSPColorPicker
     {
         public int selectedColorPicker = 0;
 
-        const string filePath = "GameData/SpaceTuxLibrary/PluginData/ColorPicker.cfg";
+        string filePath { get { return SpaceTuxUtility.AppRootPath.Path + "/GameData/SpaceTuxLibrary/PluginData/ColorPicker.cfg"; } }
         const string NODE = "COLOR_PICKER";
         const string VALUE = "selectedColorPicker";
         ConfigNode settings = null;
@@ -35,7 +35,7 @@ namespace KSPColorPicker
                         selectedColorPicker = Int16.Parse(node.GetValue(VALUE));
                     }
                 }
-            }                
+            }
         }
 
         internal void Save(int i)
