@@ -53,9 +53,6 @@ namespace KSP_Log
     public class Log
     {
         static bool FirstDelete = false;
-        //internal static readonly string normalizedRootPath = Path.GetFullPath(KSPUtil.ApplicationRootPath);
-        // internal static readonly string logsDirPath = Path.Combine(normalizedRootPath, "Logs", "SpaceTux");
-
         internal string logPath = "";
 
         FileStream stream;
@@ -322,7 +319,7 @@ namespace KSP_Log
         /// <param name="args"></param>
         public void Warn(object messageOrFormat, params object[] args)
         {
-            Warn(GetLogMessage(messageOrFormat, args));
+            Warning(GetLogMessage(messageOrFormat, args));
         }
 
 
