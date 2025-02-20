@@ -10,7 +10,7 @@ namespace SpaceTuxUtility
         {
             const double SECONDS_PER_MINUTE = 60.0;
             const double MINUTES_PER_HOUR = 60.0;
-            double HOURS_PER_DAY = (GameSettings.KERBIN_TIME) ? 6.0 : 24.0;
+            double HOURS_PER_DAY = Planetarium.fetch.Home.solarDayLength / MINUTES_PER_HOUR / SECONDS_PER_MINUTE;
             //double DAYS_PER_YEAR = (GameSettings.KERBIN_TIME) ? 426.0 : 365.0;
 
             double DAYS_PER_YEAR = Planetarium.fetch.Home.orbit.period / HOURS_PER_DAY / MINUTES_PER_HOUR/ SECONDS_PER_MINUTE;
