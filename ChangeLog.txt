@@ -177,3 +177,10 @@ ChangeLog
 0.0.8.6
 	Fixed infinite loop in the Log.Warn (thanks to github user @H4ckerxx44 for finding this)
 		KSP_Log 1.2.0.1
+
+0.0.8.7
+	Thanks to github user @svm420 for this:
+		Update Format_Time.cs, Set hours per day from the actual orbital data instead of the old hard-coded method
+			SpaceTuxUtility 0.0.1.4
+	Updated all .version files to use github for new version info
+	Updated all project files to reflect new path for builds

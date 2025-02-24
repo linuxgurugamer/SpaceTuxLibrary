@@ -1,6 +1,6 @@
 {
   "NAME": "SpaceTuxLibrary",
-  "URL": "http://ksp.spacetux.net/avc/SpaceTuxLibrary",
+  "URL": "https://raw.githubusercontent.com/linuxgurugamer/SpaceTuxLibrary/refs/heads/master/SpaceTuxLibrary.version",
   "DOWNLOAD": "https://github.com/linuxgurugamer/SpaceTuxLibrary/releases",
   "GITHUB": {
     "USERNAME": "linuxgurugamer",
@@ -11,16 +11,22 @@
     "MAJOR": 0,
     "MINOR": 0,
     "PATCH": 8,
-    "BUILD": 4
+    "BUILD": 7
   },
   "KSP_VERSION": {
     "MAJOR": 1,
     "MINOR": 12,
-    "PATCH": 2
+    "PATCH": 4
   },
   "KSP_VERSION_MIN": {
     "MAJOR": 1,
     "MINOR": 8,
     "PATCH": 0
+  },
+"KSP_VERSION_MAX": {
+    "MAJOR": 1,
+    "MINOR": 12,
+    "PATCH": 99
+  }
   }
 }

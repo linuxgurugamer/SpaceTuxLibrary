@@ -75,7 +75,7 @@
 
 
 
-start /D D:\Users\jbb\github\SpaceTuxLibrary /WAIT copyDLLtoPlugins.bat $(TargetDir) $(TargetFileName) $(TargetName)
+start /D D:\Users\jbb\github\KSP-1-Mods\SpaceTuxLibrary /WAIT copyDLLtoPlugins.bat $(TargetDir) $(TargetFileName) $(TargetName)
 
 
 
