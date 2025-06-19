@@ -18,7 +18,19 @@ namespace KSP_ColorPicker_Wrapper
         /// <summary>
         /// Whether the Toolbar Plugin is available.
         /// </summary>
-        public static bool ColorPickerAvailable        {            get            {                if (colorPickerAvailable == null)                {                    colorPickerAvailable = HasMod("KSP_ColorPicker");                }                return (bool)colorPickerAvailable;            }        }
+	#region NO_LOCALIZATION
+        public static bool ColorPickerAvailable
+	{
+    		get
+    		{
+			if (colorPickerAvailable == null)
+			{
+	    			colorPickerAvailable = HasMod("KSP_ColorPicker");
+			}
+			return (bool)colorPickerAvailable;
+    		}
+	}
+	#endregion
 
         private static bool HasMod(string modIdent)
         {

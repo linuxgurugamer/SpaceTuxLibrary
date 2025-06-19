@@ -1,4 +1,4 @@
-﻿/*
+/*
  * VesselModuleSave us authored by Diazo
  * Released under the GPL3 license
  * 
@@ -6,6 +6,7 @@
  * Forum link: https://forum.kerbalspaceprogram.com/index.php?/topic/114414-104-vesselmodule-class-data-persistence/&tab=comments#comment-2030477
  */
 
+using KSP.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace VesselModuleSaveFramework
 
         public virtual ConfigNode VSMSave(ConfigNode node)
         {
-            return new ConfigNode("Empty");
+            return new ConfigNode(Localizer.Format("#LOC_SpaceTuxLib_18"));
             //override this to run OnSave() code
         }
 
@@ -60,7 +61,7 @@ namespace VesselModuleSaveFramework
         public void InternalSaveCall() //internal use only, do not use, background code to Save data
         {
             ConfigNode toSaveA = VesselModuleStaticData.GetSaveNode(this);
-            if (toSaveA.name == "Empty") //if vessel not yet in file, returns an Empty config node. Have to apply vessel ID identifier before saving
+            if (toSaveA.name == Localizer.Format("#LOC_SpaceTuxLib_18")) //if vessel not yet in file, returns an Empty config node. Have to apply vessel ID identifier before saving
             {
                 toSaveA.name = this.vessel.id.ToString();
             }

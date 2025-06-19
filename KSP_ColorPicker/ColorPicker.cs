@@ -1,4 +1,5 @@
-﻿using System;
+using KSP.Localization;
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace KSPColorPicker
 
         // Private and internal fields
 
-        private static Log Log = new Log("ColorPicker");
+        private static Log Log = new Log(Localizer.Format("#LOC_SpaceTuxLib_7"));
 
         internal bool destroyOnClose = false;
         internal bool useDefinedPosition = false;
@@ -66,7 +67,7 @@ namespace KSPColorPicker
         private Rect _windowPos;
         private GUIStyle saturationTextureStyle;
         private GUIStyle styleTextureStyle;
-        private string texturePath = "ColorPicker-Texture";
+        private string texturePath = Localizer.Format("#LOC_SpaceTuxLib_8");
         private static string TEXTURES { get { return SpaceTuxUtility.AppRootPath.Path + "/GameData/SpaceTuxLibrary/PluginData/Images"; } }
         double lastTimePinged = 0;
 
@@ -79,7 +80,9 @@ namespace KSPColorPicker
 
         public static string[] AvailableTextures()
         {
+            #region NO_LOCALIZATION
             string[] png = Directory.GetFiles(TEXTURES, "*.png");
+            #endregion
 
             string[] result = png.OrderBy(x => x).ToArray();
             for (int i = 0; i < result.Length; i++)
@@ -246,7 +249,7 @@ namespace KSPColorPicker
             {
                 LoadAndInitTexture();
             }
-            _windowPos = ClickThruBlocker.GUIWindow(3456789, _windowPos, DrawWindowContents, "Color Picker");
+            _windowPos = ClickThruBlocker.GUIWindow(3456789, _windowPos, DrawWindowContents, Localizer.Format("#LOC_SpaceTuxLib_9"));
         }
 
 
@@ -295,7 +298,7 @@ namespace KSPColorPicker
                 }
             }
 
-            if (GUI.Button(new Rect(1200, TITLE_HEIGHT + textureHeight + (BOTTOM_RIGHT_MARGIN - BUTTON_HEIGHT) / 2, BUTTON_WIDTH, BUTTON_HEIGHT), "Cancel"))
+            if (GUI.Button(new Rect(1200, TITLE_HEIGHT + textureHeight + (BOTTOM_RIGHT_MARGIN - BUTTON_HEIGHT) / 2, BUTTON_WIDTH, BUTTON_HEIGHT), Localizer.Format("#LOC_SpaceTuxLib_10")))
             {
                 // hide picker
                 showPicker = false;
@@ -305,7 +308,7 @@ namespace KSPColorPicker
                     Destroy(this);
                 }
             }
-            if (GUI.Button(new Rect(10 + textureWidth / 2, TITLE_HEIGHT + textureHeight + (BOTTOM_RIGHT_MARGIN - BUTTON_HEIGHT) / 2, BUTTON_WIDTH, BUTTON_HEIGHT), "Accept"))
+            if (GUI.Button(new Rect(10 + textureWidth / 2, TITLE_HEIGHT + textureHeight + (BOTTOM_RIGHT_MARGIN - BUTTON_HEIGHT) / 2, BUTTON_WIDTH, BUTTON_HEIGHT), Localizer.Format("#LOC_SpaceTuxLib_11")))
             {
                 selectedColor = styleTexture.GetPixel(0, 0);
                 success = true;
@@ -313,7 +316,7 @@ namespace KSPColorPicker
             }
 
 
-            GUI.Label(new Rect(textureWidth - BUTTON_WIDTH * 2, TITLE_HEIGHT + textureHeight + (BOTTOM_RIGHT_MARGIN - BUTTON_HEIGHT) / 2, BUTTON_WIDTH * 2, BUTTON_HEIGHT), "Selected Color -->");
+            GUI.Label(new Rect(textureWidth - BUTTON_WIDTH * 2, TITLE_HEIGHT + textureHeight + (BOTTOM_RIGHT_MARGIN - BUTTON_HEIGHT) / 2, BUTTON_WIDTH * 2, BUTTON_HEIGHT), Localizer.Format("#LOC_SpaceTuxLib_12"));
 
             // color display
 

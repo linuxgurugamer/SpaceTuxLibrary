@@ -123,6 +123,7 @@ namespace ButtonManager
         /// <param name="gs">scene being changed so, not use here</param>
         void onGameSceneLoadRequested(GameScenes gs)
         {
+            #region NO_LOCALIZATION
             if (HighLogic.CurrentGame == null)
                 return;
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode)
@@ -254,6 +255,7 @@ namespace ButtonManager
         static void DelegateCall_10() { DelegateCall(10); }
         #endregion
 
+        #region NO_LOCALIZATION
         /// <summary>
         /// The initial call when the button is pressed
         /// </summary>
@@ -306,3 +308,5 @@ namespace ButtonManager
         }
     }
 }
+#endregion
+#endregion

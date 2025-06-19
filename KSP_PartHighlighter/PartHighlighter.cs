@@ -13,8 +13,9 @@ namespace KSP_PartHighlighter
     public class PartHighlighter : MonoBehaviour
     {
         // Private fields
-
+        #region NO_LOCALIZATION
         private static Log Log = new Log("KSP_PartHighlighter");
+        #endregion
 
         private static PartHighlighter Instance = null;
         private static Dictionary<int, HighlightParts> hPartsLists = null;
@@ -56,6 +57,7 @@ namespace KSP_PartHighlighter
         //
         // Separate non-static initialiation
         //
+        #region NO_LOCALIZATION
         internal void Startup()
         {
             if (hPartsLists == null)
@@ -133,6 +135,7 @@ namespace KSP_PartHighlighter
                 return -1;
             }
         }
+        #endregion
 
         /// <summary>
         /// Set the flash interval for the specified list

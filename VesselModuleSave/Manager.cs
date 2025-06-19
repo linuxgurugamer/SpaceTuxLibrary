@@ -1,4 +1,4 @@
-﻿/*
+/*
  * VesselModuleSave us authored by Diazo
  * Released under the GPL3 license
  * 
@@ -6,6 +6,7 @@
  * Forum link: https://forum.kerbalspaceprogram.com/index.php?/topic/114414-104-vesselmodule-class-data-persistence/&tab=comments#comment-2030477
  */
 
+using KSP.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,10 @@ namespace VesselModuleSaveFramework
             {
                 vsm.InternalSaveCall();
             }
+            #region NO_LOCALIZATION
             ConfigNode vmNode = new ConfigNode("VMSNode");
+            #endregion
+
             foreach (KeyValuePair<string, ConfigNode> data in VesselModuleConfigNodes)
             {
                 ConfigNode nodeToAdd = new ConfigNode(data.Key); //name the node correctly so the loading works
@@ -109,7 +113,7 @@ namespace VesselModuleSaveFramework
                     return modNode.GetNode(vsm.Vessel.id.ToString());
                 }
             }
-            return new ConfigNode("Empty"); //vessel does not exist
+            return new ConfigNode(Localizer.Format("#LOC_SpaceTuxLib_18")); //vessel does not exist
         }
 
         public static void RefreshVesselData() //internal load called by this mod, required to ensure the race condition does not cause problems, refresh all data in all loaded VesselModules
@@ -158,6 +162,7 @@ namespace VesselModuleSaveFramework
         }
 
 
+            #region NO_LOCALIZATION
 
         private void GameSaveTrigger(ConfigNode node) //called on GameSave event, refresh all data from loaded vessels and save to .sfs
         {
@@ -176,13 +181,11 @@ namespace VesselModuleSaveFramework
             {
                 vmNode = node.GetNode("VMSNode");
             }
+
             VesselModuleStaticData.LoadRoutine(vmNode); //load data into static data module, okay to pass empty node
             VesselModuleStaticData.RefreshVesselData(); //refresh data in any VesselModuleSave that have already loaded somehow
 
         }
-
-
+            #endregion
     }
-
-
 }

@@ -11,11 +11,12 @@ namespace KSPColorPicker
     {
         public int selectedColorPicker = 0;
 
+        #region NO_LOCALIZATION
         string filePath { get { return SpaceTuxUtility.AppRootPath.Path + "/GameData/SpaceTuxLibrary/PluginData/ColorPicker.cfg"; } }
         const string NODE = "COLOR_PICKER";
         const string VALUE = "selectedColorPicker";
         ConfigNode settings = null;
-
+        #endregion
         public Settings()
         {
             Load();

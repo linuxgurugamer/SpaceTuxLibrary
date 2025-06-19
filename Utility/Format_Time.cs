@@ -1,4 +1,5 @@
-﻿using System;
+using KSP.Localization;
+using System;
 using System.Text;
 using UnityEngine;
 
@@ -41,16 +42,16 @@ namespace SpaceTuxUtility
             if (sign != "")
                 str.Append(sign);
             if (years > 0)
-                str.Append(years.ToString("#0") + "y ");
+                str.Append(years.ToString("#0") + Localizer.Format("#LOC_SpaceTuxLib_13"));
 
             if (str.Length > 0 || days > 0 || (str.Length > 0 && days == 0 && !hideZeroValues))
-                str.Append(days.ToString("##0") + "d ");
+                str.Append(days.ToString("##0") + Localizer.Format("#LOC_SpaceTuxLib_14"));
 
             if (str.Length > 0 || hours > 0 || (str.Length > 0 && hours == 0 && !hideZeroValues))
-                str.Append(hours.ToString("00") + (expanded ? "h " : ":"));
+                str.Append(hours.ToString("00") + (expanded ? Localizer.Format("#LOC_SpaceTuxLib_15") : ":"));
 
             if (str.Length > 0 || minutes > 0 || (str.Length == 0 && minutes == 0 && !hideZeroValues))
-                str.Append(minutes.ToString("00") + (expanded ? "m " : ":"));
+                str.Append(minutes.ToString("00") + (expanded ? Localizer.Format("#LOC_SpaceTuxLib_16") : ":"));
 
             if (years == 0 && days == 0 && hours == 0 && minutes== 0)
             {
@@ -71,7 +72,7 @@ namespace SpaceTuxUtility
             }
             else
                 str.Append(Math.Floor(seconds).ToString("00"));
-            str.Append(expanded ? "s" : "");
+            str.Append(expanded ? Localizer.Format("#LOC_SpaceTuxLib_17") : "");
 
             return str.ToString();
         }

@@ -73,6 +73,8 @@ namespace ButtonManager
         /// <summary>
         /// Saves the user priority set for all buttons
         /// </summary>
+
+        #region NO_LOCALIZATION
         internal static void SaveUserPriority(Dictionary<string, ModDelegateDefinition> allDelegateRef)
         {
             if (HighLogic.CurrentGame.Parameters.CustomParams<BM>().debugMode)
@@ -123,5 +125,6 @@ namespace ButtonManager
             }
             return allSavedDelegateRef;
         }
+        #endregion
     }
 }

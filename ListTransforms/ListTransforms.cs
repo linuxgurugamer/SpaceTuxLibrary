@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using KSP_Log;
 
+#region NO_LOCALIZATION
 namespace List_Transforms
 {
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
@@ -91,9 +92,10 @@ namespace List_Transforms
                 var components = gameObject.GetComponents<Component>();
                 foreach (var c in components)
                 {
-
+                #region NO_LOCALIZATION
                     baseLog.Info(
                          new string('.', depth + 3) + "c" + " " + c == null ? "[missing script]" : c.GetType().FullName);
+                         #endregion
                 }
             });
         }
@@ -101,4 +103,6 @@ namespace List_Transforms
 #endif
     
 }
+#endregion
+
 #endif

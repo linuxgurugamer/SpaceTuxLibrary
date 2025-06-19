@@ -1,4 +1,5 @@
 ﻿#if false
+#region NO_LOCALIZATION
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -82,4 +83,5 @@ m.enabled = false;
     }
 }
 
+#endregion
 #endif

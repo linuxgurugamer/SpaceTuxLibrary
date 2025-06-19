@@ -184,3 +184,11 @@ ChangeLog
 			SpaceTuxUtility 0.0.1.4
 	Updated all .version files to use github for new version info
 	Updated all project files to reflect new path for builds
+
+0.0.9
+	Localized all libraries:
+		ButtonManager 1.0.2
+		KSP_ColorPicker 1.1.1
+		KSP_PartHighlighter 1.1.1
+		SpaceTuxUtility 1.0.2
+		VesselModuleSave 1.0.2

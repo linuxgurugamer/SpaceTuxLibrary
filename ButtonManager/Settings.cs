@@ -1,4 +1,5 @@
-﻿
+
+using KSP.Localization;
 using System.Collections;
 using System.Reflection;
 
@@ -14,14 +15,14 @@ namespace ButtonManager
     {
         public override string Title { get { return ""; } }
         public override GameParameters.GameMode GameMode { get { return GameParameters.GameMode.ANY; } }
-        public override string Section { get { return "Button Manager"; } }
-        public override string DisplaySection { get { return "Button Manager"; } }
+        public override string Section { get { return Localizer.Format("#LOC_SpaceTuxLib_2"); } }
+        public override string DisplaySection { get { return Localizer.Format("#LOC_SpaceTuxLib_2"); } }
         public override int SectionOrder { get { return 1; } }
         public override bool HasPresets { get { return false; } }
 
 
         [GameParameters.CustomParameterUI("Debug mode",
-            toolTip = "When enabled, internal methods will report as they are executed")]
+            toolTip = "#LOC_SpaceTuxLib_6")]
         public bool debugMode = false;
 
         public override bool Interactible(MemberInfo member, GameParameters parameters)

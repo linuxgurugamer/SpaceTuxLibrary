@@ -45,6 +45,8 @@ using UnityEngine;
 using System.Reflection;
 using SpaceTuxUtility;
 
+#region NO_LOCALIZATION
+
 namespace KSP_Log
 {
     /// <summary>
@@ -169,7 +171,11 @@ namespace KSP_Log
             if (writer != null)
                 writer.Close();
             VerifyLogPath();
+
+            #region NO_LOCALIZATION
             logPath = Path.Combine(logsDirPath, title + ".log");
+            #endregion
+
             if (allWriters.ContainsKey(logPath))
             {
                 writer = allWriters[logPath];
@@ -385,15 +391,16 @@ namespace KSP_Log
             Error(name + " exception caught: " + exception.GetType() + ": " + exception.Message);
         }
 
-        private static string GetLogMessage(object messageOrFormat, object[] args)
+        private string GetLogMessage(object messageOrFormat, object[] args)
         {
             string message = messageOrFormat.ToString();
             if (args != null && args.Length > 0)
             {
                 message = String.Format(message, args);
             }
-            return String.Format("[BetterLoadSaveGame] {0}", message);
+            return String.Format("[" + PREFIX + "] {0}", message);
         }
 
     }
 }
+#endregion

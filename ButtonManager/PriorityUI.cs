@@ -1,4 +1,5 @@
-﻿using KSP.UI.Screens;
+using KSP.Localization;
+using KSP.UI.Screens;
 using System;
 using System.Collections;
 using System.Linq;
@@ -42,10 +43,11 @@ namespace ButtonManager
                 if (ToolbarControl.LoadImageFromFile(ref downArrow, KSPUtil.ApplicationRootPath + "GameData/" + FOLDER + "/PluginData/Textures/down"))
                     downContent = new GUIContent("", downArrow, "");
                 else
-                    downContent = new GUIContent("v", null, "");
+                    downContent = new GUIContent(Localizer.Format("#LOC_SpaceTuxLib_1"), null, "");
             }
-
+            #region NO_LOCALIZATION
             InvokeRepeating("CheckButtons", 0f, 1f);
+            #endregion
             StartCoroutine(CheckButtons());
         }
 
@@ -58,6 +60,8 @@ namespace ButtonManager
         private int _windowId;
         const int butW = 19;
 
+        
+        #region NO_LOCALIZATION
         private void SetupToolbar()
         {
             toolbarControl = gameObject.AddComponent<ToolbarControl>();
@@ -75,6 +79,7 @@ namespace ButtonManager
                 MODNAME
             );
         }
+        #endregion
 
         void Toggle()
         {
@@ -137,7 +142,7 @@ namespace ButtonManager
                 }
                 GUI.skin = HighLogic.Skin;
 
-                _windowPosition = ClickThruBlocker.GUILayoutWindow(_windowId, _windowPosition, Display, "Button Manager");
+                _windowPosition = ClickThruBlocker.GUILayoutWindow(_windowId, _windowPosition, Display, Localizer.Format("#LOC_SpaceTuxLib_2"));
 
             }
         }
@@ -154,7 +159,7 @@ namespace ButtonManager
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical();
 
-            GUILayout.Label("Select Button:");
+            GUILayout.Label(Localizer.Format("#LOC_SpaceTuxLib_3"));
 
             btnScrollPos = GUILayout.BeginScrollView(btnScrollPos);
             foreach (ButtonManager.SceneButton b in BtnManager.activeSceneButtons.Values)
@@ -210,7 +215,7 @@ namespace ButtonManager
             else
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("No button selected");
+                GUILayout.Label(Localizer.Format("#LOC_SpaceTuxLib_4"));
                 GUILayout.EndHorizontal();
             }
 
@@ -218,7 +223,7 @@ namespace ButtonManager
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("OK"))
+            if (GUILayout.Button(Localizer.Format("#LOC_SpaceTuxLib_5")))
             {
                 isVisible = false;
             }
