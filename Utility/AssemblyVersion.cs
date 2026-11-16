@@ -5,6 +5,6 @@
   
  using System.Reflection;
 
- [assembly: AssemblyVersion("1.0.2.0")]
- [assembly: AssemblyFileVersion("1.0.2.0")]
- [assembly: KSPAssembly("SpaceTuxUtility", 1, 0, 2)]
+ [assembly: AssemblyVersion("1.0.3.0")]
+ [assembly: AssemblyFileVersion("1.0.3.0")]
+ [assembly: KSPAssembly("SpaceTuxUtility", 1, 0, 3)]

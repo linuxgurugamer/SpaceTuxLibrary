@@ -8,6 +8,6 @@ namespace SpaceTuxUtility
 {
     public static class AppRootPath
     {
-        public static string Path { get { return AppDomain.CurrentDomain.BaseDirectory; } }
+        public static string Path { get { return KSPUtil.ApplicationRootPath; } }
     }
 }

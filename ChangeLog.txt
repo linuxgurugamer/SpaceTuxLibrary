@@ -192,3 +192,7 @@ ChangeLog
 		KSP_PartHighlighter 1.1.1
 		SpaceTuxUtility 1.0.2
 		VesselModuleSave 1.0.2
+
+0.0.9.1
+	SpaceTuxUtility 1.0.3
+		Fixed the ApprootPath to return the correct path, fixes some logspam
